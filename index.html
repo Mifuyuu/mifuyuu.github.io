@@ -236,27 +236,5 @@
         </tr>
       </table>
     </div>
-    <script>
-      // Function to hide the orientation message
-      function hideOrientationMessage() {
-        var orientationMessage = document.getElementById('orientationMessage');
-        if (orientationMessage) {
-          orientationMessage.style.display = 'none';
-        }
-      }
-  
-      // Call the function to hide the message when the screen orientation changes
-      window.addEventListener('orientationchange', hideOrientationMessage);
-  
-      // Initial check on page load
-      window.addEventListener('load', function() {
-        if (window.orientation === 0) {
-          var orientationMessage = document.getElementById('orientationMessage');
-          if (orientationMessage) {
-            orientationMessage.style.display = 'block';
-          }
-        }
-      });
-    </script>
   </body>
 </html>
