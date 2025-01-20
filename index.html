@@ -1,241 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Study Table 66/45</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.css" rel="stylesheet"/>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap" rel="stylesheet"/>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-      body {
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-        font-family: "Kanit", sans-serif;
-        font-size: 18px;
-      }
 
-      h1 {
-        text-align: center;
-        margin-top: 20px;
-      }
+<head>
+    <meta charset="utf-8" />
+    <title>About Mifuyuu</title>
+    <link href="jquery-sakura.css" rel="stylesheet" type="text/css" />
+    <link href="main-styles.css" rel="stylesheet" type="text/css" />
+</head>
 
-      table {
-        width: 80%;
-        background-color: #2020208a;
-        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.322);
-        margin: auto;
-        border-radius: 15px;
-        table-layout: fixed;
-      }
+<body>
+    <div class="content-grid">
+        <div class="content-card content-layout-right">
+            <img src="assets/profile.jpg" alt="profile image" />
+            <div class="content-info">
+                <h3>Hi, I'm Mifuyuu</h3>
+                <p>
+                    My name is Mifuyuu, I'm a software engineer and I love to code. I'm
+                    a full stack developer and I'm passionate about creating beautiful
+                    and functional websites. I'm also a huge fan of anime and manga, and
+                    I love to watch and read them in my free time. I'm always looking
+                    for new projects to work on, so feel free to reach out to me if you
+                    have any ideas!
+                </p>
+            </div>
+        </div>
 
-      td {
-        padding: 15px;
-        text-align: center;
-      }
-
-      th {
-        padding: 14px;
-        text-align: center;
-        color: #ffffff;
-      }
-
-      /*-----------------CLASS COLOR----------------------*/
-      #bg1 {
-        background-color: #dd86ff;
-        border-radius: 20px;
-      }
-      #bg2 {
-        background-color: #85e2e6;
-        border-radius: 20px;
-      }
-      #bg3 {
-        background-color: #f3ca8c;
-        border-radius: 20px;
-      }
-      #bg4 {
-        background-color: #f6f7af;
-        border-radius: 20px;
-      }
-      #bg5 {
-        background-color: #b0cdfc;
-        border-radius: 20px;
-      }
-      #bg6 {
-        background-color: #4dfa7b;
-        border-radius: 20px;
-      }
-      #bg7 {
-        background-color: #eaa9fd;
-        border-radius: 20px;
-      }
-
-      body {
-        margin: 0;
-        padding: 0;
-      }
-
-      .error-con {
-        background: rgba(255, 0, 89, 1);
-        background: -webkit-linear-gradient(
-          45deg,
-          rgba(255, 0, 89, 1) 0%,
-          rgba(0, 179, 255, 1) 33%,
-          rgba(255, 0, 89, 1) 66%,
-          rgba(0, 179, 255, 1) 100%
-        );
-        background: -moz-linear-gradient(
-          45deg,
-          rgba(255, 0, 89, 1) 0%,
-          rgba(0, 179, 255, 1) 33%,
-          rgba(255, 0, 89, 1) 66%,
-          rgba(0, 179, 255, 1) 100%
-        );
-        background: -ms-linear-gradient(
-          45deg,
-          rgba(255, 0, 89, 1) 0%,
-          rgba(0, 179, 255, 1) 33%,
-          rgba(255, 0, 89, 1) 66%,
-          rgba(0, 179, 255, 1) 100%
-        );
-        background: -o-linear-gradient(
-          45deg,
-          rgba(255, 0, 89, 1) 0%,
-          rgba(0, 179, 255, 1) 33%,
-          rgba(255, 0, 89, 1) 66%,
-          rgba(0, 179, 255, 1) 100%
-        );
-        background: linear-gradient(
-          45deg,
-          rgba(255, 0, 89, 1) 0%,
-          rgba(0, 179, 255, 1) 33%,
-          rgba(255, 0, 89, 1) 66%,
-          rgba(0, 179, 255, 1) 100%
-        );
-        background-size: 400% 400%;
-        -webkit-animation: errorBg 5s linear infinite;
-        -moz-animation: errorBg 5s linear infinite;
-        animation: errorBg 5s linear infinite;
-        height: 100vh;
-      }
-
-      @-webkit-keyframes errorBg {
-        0% {
-          background-position: 100% 0%;
-        }
-        100% {
-          background-position: 15% 100%;
-        }
-      }
-
-      @-moz-keyframes errorBg {
-        0% {
-          background-position: 100% 0%;
-        }
-        100% {
-          background-position: 15% 100%;
-        }
-      }
-
-      @keyframes errorBg {
-        0% {
-          background-position: 100% 0%;
-        }
-        100% {
-          background-position: 15% 100%;
-        }
-      }
-
-    </style>
-  </head>
-  <body class="error-con">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.js"></script>
-    <div>
-      <table>
-        <tr>
-          <th></th>
-          <th colspan="2">08:00 - 09:00</th>
-          <th colspan="2">09:00 - 10:00</th>
-          <th colspan="2">10:00 - 11:00</th>
-          <th colspan="2">11:00 - 12:00</th>
-          <th colspan="2">12:00 - 13:00</th>
-          <th colspan="2">13:00 - 14:00</th>
-          <th colspan="2">14:00 - 15:00</th>
-          <th colspan="2">15:00 - 16:00</th>
-          <th colspan="2">16:00 - 17:00</th>
-          <th colspan="2">17:00 - 18:00</th>
-        </tr>
-        <tr>
-          <th>จันทร์</th>
-          <td></td>
-          <td></td>
-          <!--td colspan="6" id="bg1">
-            1500001<br /><b>ภาษาอังกฤษเพื่อการสื่อสารในสังคม 1</b><br />ดร.
-            ณัฐกฤตา บุญบงกชรัตน์<br /><a style="color: #6bfd78">ONLINE</a>
-          </td-->
-          <td></td>
-          <td></td>
-          <td colspan="6" id="bg2">
-            1500204<br /><b>การสื่อสารอย่างผู้นำ</b><br />ดร. จินตนา เหลือล้น<br />15/7/1
-          </td>
-          <td></td>
-        </tr>
-        <tr>
-          <th>อังคาร</th>
-          <td></td>
-          <td colspan="8" id="bg3">
-            7201401<br /><b>โปรแกรมสำเร็จรูปมัลติมีเดีย</b><br />ดร. ปริพัส
-            ศรีสมบูรณ์<br />C310
-          </td>
-          <td></td>
-          <td></td>
-          <td colspan="8" id="bg4">
-            7201101<br /><b>คณิตศาสตร์และสถิติสำหรับเทคโนโลยีสารสนเทศ</b
-            ><br />อาจารย์ แก้วใจ อาภรณ์พิศาล<br />C304
-          </td>
-        </tr>
-        <tr>
-          <th>พุธ</th>
-          <td></td>
-          <td colspan="6" id="bg5">
-            2500201<br /><b>จิตวิญญาณราชภัฏนครปฐม</b><br />ผู้ช่วยศาสตราจารย์
-            แพรภัทรา เขียวชะอุ่ม<br />LI 2
-          </td>
-        </tr>
-        <tr>
-          <th>พฤหัสบดี</th>
-          <td><br /><br /><br /><br /></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <th>ศุกร์</th>
-          <td></td>
-          <td colspan="8" id="bg6">
-            7201103<br /><b>หลักการเขียนโปรแกรมคอมพิวเตอร์</b><br />อาจารย์
-            สุขสวัสดิ์ แซ่ลิ่ม<br />C407
-          </td>
-          <td></td>
-          <td></td>
-          <td colspan="8" id="bg7">
-            7201102<br /><b>ระบบคอมพิวเตอร์</b><br />อาจารย์ ศุภกฤษ
-            นาคป้อมฉิน<br />C303
-          </td>
-        </tr>
-        <tr>
-          <th></th>
-        </tr>
-      </table>
+        <div class="content-card content-layout-left" onclick="window.location.href='https://github.com/Mifuyuu/DisableFrontView-1.8.9'">
+            <img src="assets/dfv.png" alt="disablefrontview icon"/>
+            <div class="content-info">
+                <h3>DisableFrontView Mod</h3>
+                <p>
+                    About The DisableFrontView mod enhances gameplay immersion by
+                    disabling the front-facing third-person camera view (front
+                    perspective). When toggling the third-person perspective using the
+                    F5 key, this mod ensures you can only switch between the
+                    first-person view and the rear-facing third-person view.
+                </p>
+            </div>
+        </div>
+        <div class="content-card content-layout-left" onclick="window.location.href='https://mifuyuu.github.io/Seksun-web/'">
+            <!-- <img src="assets/dfv.png" alt="disablefrontview icon"/> -->
+            <div class="content-info">
+                <h3>Html Basic</h3>
+                <p>
+                    About The DisableFrontView mod enhances gameplay immersion by
+                    disabling the front-facing third-person camera view (front
+                    perspective). When toggling the third-person perspective using the
+                    F5 key, this mod ensures you can only switch between the
+                    first-person view and the rear-facing third-person view.
+                </p>
+            </div>
+        </div>
     </div>
-  </body>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="jquery-sakura.min.js"></script>
+    <script>
+        $(window).load(function () {
+            $("body").sakura();
+        });
+    </script>
+</body>
+
 </html>
