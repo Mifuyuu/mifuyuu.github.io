@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tsuzaki Dev</title>
+     <link rel="stylesheet" href="castorice.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+
+        .content {
+            max-width: 1200px;
+            display: grid;
+            gap: 24px;
+        }
+
+        .card-container {
+            margin-top: 0;
+            padding-top: 0;
+        }
+
+        .card {
+            width: 100%;
+        }
+
+        .profile-box {
+            width: 200px;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            background-image: url('img/profile.jpg');
+            background-size: cover;
+            background-position: 20% 20%;
+        }
+
+        .card .profile-img::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+        }
+
+        .card:hover .profile-img::after {
+            opacity: 1;
+        }
+
+        .card:hover .profile-img {
+            transform: scale(1.1);
+        }
+
+        .cols {
+            gap: 48px;
+            flex-direction: column;
+            margin-top: 0;
+            padding-bottom: 8px;
+            width: 100%;
+        }
+
+        .card-container {
+            margin-bottom: 48px;
+        }
+
+        .rows {
+            flex: content;
+            align-items: center;
+            flex-direction: row;
+            width: 100%;
+            gap: 24px;
+        }
+
+        .rows-reverse {
+            flex: content;
+            align-items: center;
+            flex-direction: row-reverse;
+            width: 100%;
+            /* max-width: 1200px; */
+            gap: 24px;
+        }
+
+        .card-front {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* width: 30%; */
+            margin: auto;
+        }
+
+        .card-content {
+            width: 70%;
+            /* flex-direction: column; */
+            /* padding: 24px; */
+            /* border-radius: 10px; */
+
+            h3 {
+                font-size: 24px;
+            }
+
+            p {
+                font-size: 20px;
+                line-height: 1.6;
+            }
+
+            .text-highlight {
+                color: var(--primary-color);
+            }
+        }
+
+        .card .icon-bg {
+            width: 120px;
+            height: 120px;
+        }
+
+        .card .icon-bg {
+            margin-bottom: 0;
+        }
+
+        .card-front i {
+            font-size: 100px;
+        }
+
+        .card {
+            background-color: var(--card-background-color);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            .card {
+                width: 100%;
+                p {
+                    font-size: 18px;
+                }
+            }
+        }
+
+        .card-content.lowres {
+            display: none;
+            flex-direction: column;
+            h3 {
+            text-align: center;
+            }
+            p {
+                text-wrap: wrap;
+            }
+        }
+
+        .project-container {
+            display: flex;
+            align-items: center;
+            /* background-color: #2b2b2b46; */
+            /* border-radius: 10px; */
+            padding: 24px;
+            /* gap: 24px; */
+        }
+
+        .left-section {
+            width: 30%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .projects-img {
+            width: 100%;
+            border-radius: 10px;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: 50%;
+            &.dfv {
+                background-image: url('img/java-pjx.png');
+                height: 324px;
+            }
+        }
+
+        .right-section {
+            width: 70%;
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+            color: var(--text-color);
+            h3 {
+                color: var(--primary-color);
+                font-size: 24px;
+                margin-bottom: 12px;
+            }
+            p {
+                font-size: 18px;
+                line-height: 1.6;
+                transition: none;
+                .text-highlight {
+                    color: var(--primary-color);
+                }
+            }
+            .project-btn {
+                display: flex;
+                gap: 24px;
+                button {
+                    padding: 8px 16px;
+                    margin-top: 12px;
+                }
+            }
+        }
+
+/* ----------------------- Progress -----------------------*/
+
+        .progress {
+            background: rgba(138, 138, 138, 0.1);
+            /* background: #2563eb; */
+            justify-content: flex-start;
+            border-radius: 100px;
+            align-items: center;
+            position: relative;
+            padding: 0 5px;
+            display: flex;
+            height: 30px;
+        }
+
+        .progress-value {
+            animation: load 3s normal forwards;
+            box-shadow: 0 10px 40px -10px #fff;
+            border-radius: 100px;
+            background: #fff;
+            height: 20px;
+            width: 0;
+            }
+
+        @keyframes load {
+            0% { width: 0; }
+            100% { width: 68%; }
+        }
+
+/* ----------------------- Responsive -----------------------*/
+
+        @media screen and (max-width: 1200px) {
+
+            .navbar {
+                padding: 16px 16px;
+                opacity: 1;
+                animation: none;
+            }
+
+            .home-page {
+                width: 100%;
+                padding: 16px;
+                margin-top: 15%;
+            }
+
+            .content {
+                animation: none;
+                opacity: 1;
+            }
+
+            .content .title {
+                font-size: 48px;
+            }
+
+            .content .subtitle {
+                font-size: 20px;
+            }
+
+            .card-container {
+                gap: 24px;
+                flex-direction: column;
+                animation: none;
+                opacity: 1;
+            }
+
+            .card {
+                width: 100%;
+            }
+
+            .grid {
+                grid-template-columns: repeat(2, 1fr);  
+                min-width: 700px;
+                text-wrap: wrap;
+                /* word-wrap: break-word; */
+                word-break: break-word;
+                white-space: normal;
+                /* padding: 0; */
+            }
+
+            .card-content {
+                padding: 0px;
+            }
+            
+        }
+
+        @media screen and (max-width: 768px) {
+
+            .card-container {
+                animation: none;
+                opacity: 1;
+            }
+
+            .card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .card-content {
+                width: 100%;
+                text-align: start;
+                padding: 0;
+            }
+
+            .card-front {
+                width: 100%;
+            }
+
+            .card .icon-bg {
+                width: 80px;
+                height: 80px;
+            }
+
+            .rows {
+                display: flex;
+                flex-direction: row;
+                gap: 24px;
+                word-break: break-all
+            }
+
+            .rows-reverse {
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .grid {
+                grid-template-columns: repeat(1, 1fr);
+                min-width: 0;
+            }
+
+            p.subtitle {
+                padding: 0 24px;
+            }
+
+            .btn.primary {
+                padding: 8px 8px;
+            }
+
+            .project-container {
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                /* gap: 24px; */
+
+            .left-section, .right-section {
+                width: 100%;
+            }
+
+            .projects-img {
+                width: 50%;
+                height: 200px;
+            }
+
+            .right-section h3 {
+                text-align: center;
+            }
+            .project-btn {
+                justify-content: center;
+            }
+        
+
+        }
+    }
+
+        @media screen and (max-width: 480px) {
+
+            body {
+                scroll-behavior: auto;
+            }
+
+            .home-page {
+                margin-top: 20%;
+            }
+
+            .profile-box {
+                width: 200px;
+                height: 200px;
+                margin-bottom: 24px;
+            }
+
+            .card-front {
+                width: auto;
+            }
+
+            .hide-text {
+                display: none;
+            }
+
+            .nav-btn .btn {
+                padding: 8px 8px;
+            }
+
+            .rows {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 0px;
+            }
+
+            .grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
+
+            .btn {
+                font-size: 16px;
+            }
+
+            .card-content.highres {
+                display: none;
+            }
+
+            .card-content.lowres {
+                padding: 0;
+                display: block;
+                word-wrap: break-word;
+                p {
+                    font-size: 20px;
+                }
+            }
+
+            .card-content h3 {
+                text-align: center;
+            }
+
+            .left-section {
+                width: 100%;
+                .project-img {
+                    height: 256px;
+                }
+            }
+
+        }
+
+    </style>
+</head>
+<body>
+    <div class="blob-outer-container">
+        <div class="blob-inner-container">
+            <div class="blob"></div>
+        </div>
+    </div>
+    <header>
+        <nav class="navbar">
+            <h1>Castorice</h1>
+            <div class="nav-btn">
+                <button onclick="location.href='index.html';" class="btn primary"><span class="hide-text">กลับหน้าแรก</span>
+                    <i class="fa-solid fa-right-to-bracket ico-white" style="font-size: 24px;"></i>
+                </button>
+                <button onclick="window.open('https://github.com/Mifuyuu', '_blank');" class="btn primary"><span class="hide-text">GitHub</span>
+                    <i class="fa-brands fa-github ico-white" style="font-size: 24px;"></i>
+                </button>
+                <div class="theme-changer">
+                    <i id="theme-icon" class="fa-solid fa-moon"></i>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="home-page">
+        <section class="content">
+<!-- About Me -->
+            <div class="title"><span class="highlight">About Me</span></div>
+            <p class="subtitle">เกี่ยวกับฉัน ข้อมูลด้านล่างนี้จะแสดงรายละเอียดของตัวฉันในตอนนี้อย่างคร่าว ๆ</p>
+                <div class="card-container cols">
+                    <div class="card rows">
+                        <div class="card-front">
+                            <div class="profile-box">
+                                <div class="profile-img"></div>
+                            </div>
+                        </div>
+                        <div class="card-content highres">
+                            <h3>ประวัติ</h3>
+                            <p><span class="text-highlight">ชื่อ-สกุล :</span> นายเสกสรรญ หลำวรรณะ</p>
+                            <p><span class="text-highlight">เบอร์โทรศัพท์ :</span> 065-668-58XX</p>
+                            <p><span class="text-highlight">เมลล์ :</span> 664230033@webmail.npru.ac.th</p>
+                            <p><span class="text-highlight">คติ :</span> ให้เป็นเรื่องของตัวเราในวันพรุ่งนี้</p>
+                        </div>
+                        <div class="card-content lowres">
+                            <h3>ประวัติ</h3>
+                            <p><span class="text-highlight">ชื่อ-สกุล :</span></p>
+                            <p>นายเสกสรรญ หลำวรรณะ</p>
+                            <p><span class="text-highlight">เบอร์โทรศัพท์ :</span></p>
+                            <p>065-668-58XX</p>
+                            <p><span class="text-highlight">เมลล์ :</span></p>
+                            <p>664230033 @webmail.npru.ac.th</p>
+                            <p><span class="text-highlight">คติ :</span></p>
+                            <p>ให้เป็นเรื่องของตัวเราในวันพรุ่งนี้</p>
+                        </div>
+                    </div>
+                </div>
+<!-- My Education -->
+                <div class="title"><span class="highlight">education</span></div>
+                <p class="subtitle">รายละเอียดประวัติการศึกษาของฉัน ข้อมูลด้านล่างนี้จะแสดงประวัติการศึกษาของฉัน เริ่มตั้งแต่ระดับประถมศึกษา จนถึงปัจจุบัน</p>
+                <div class="card-container cols">
+                    <div class="card rows-reverse">
+                        <div class="card-front">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>ประวัติการศึกษา</h3>
+                            <p>รายละเอียดการศึกษา เริ่มตั้งแต่ชั้นประถมศึกษา จนถึงปัจจุบัน</p>
+                            <p>เริ่มเรียนระดับประถมศึกษาที่ <span class="text-highlight">โรงเรียนวัดสามง่าม (คงทองอนุสรณ์)</span></p>
+                            <p>เริ่มเรียนระดับมัธยมศึกษาที่ <span class="text-highlight">โรงเรียนคงทองวิทยา</span></p>
+                            <p>กำลังศึกษาอยู่ระดับอุดมศึกษาที่ <span class="text-highlight">มหาวิทยาลัยราชภัฏนครปฐม</span></p>
+                        </div>
+                    </div>
+                </div>
+<!-- My Skills -->
+                <div class="title"><span class="highlight">Skills</span></div>
+                <p class="subtitle">ข้อมูลความสามารถ ข้อมูลด้านล่างนี้จะแสดงข้อมูลความสามารถต่าง ๆ ของฉัน ในอนาคตฉันจะต้องมีความสามารถมากกว่านี้อย่างแน่นอน!</p>
+                <div class="card-container grid">
+                    <div class="card rows">
+                        <div class="icon-bg">
+                            <i class="fa-brands fa-java fa-4x"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>JAVA</h3>
+                            <p>สามรถเขียนได้ในระดับพื้นฐาน ไปจนถึงระดับกลาง สามารถแก้ปัญหาได้</p>
+                        </div>
+                    </div>
+                    <div class="card rows">
+                        <div class="icon-bg">
+                            <i class="fa-brands fa-html5 fa-4x"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>HTML5</h3>
+                            <p>สามารถเข้าใจการออกแบบ layout ส่วนประกอบต่าง ๆ และสามารถเขียนได้ในระดับกลาง</p>
+                        </div>
+                    </div>
+                    <div class="card rows">
+                        <div class="icon-bg">
+                            <i class="fa-brands fa-css3 fa-4x"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>CSS</h3>
+                            <p>มีความเข้าใจ และสามารถตั้งค่า ปรับเปลี่ยน หรือแก้ปัญหาได้</p>
+                        </div>
+                    </div>
+                    <div class="card rows">
+                        <div class="icon-bg">
+                            <i class="fa-brands fa-js fa-4x"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>JavaScript</h3>
+                            <p>มีความเข้าใจในระดับหนึ่ง สามารถแก้ปัญหาบางอย่างได้</p>
+                        </div>
+                    </div>
+                    <div class="card rows">
+                        <div class="icon-bg">
+                            <i class="fa-brands fa-figma fa-4x"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>Figma</h3>
+                            <p>สามารถออกแบบ และสร้างออกมาได้ สามารถแก้ปัญหาต่าง ๆ ได้</p>
+                        </div>
+                    </div>
+                    <div class="card rows">
+                        <div class="icon-bg">
+                            <i class="fa-brands fa-node-js fa-4x"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>Node js</h3>
+                            <p>สามารถเขียนได้พอสมควร พอเข้าใจหลัก และสามารถแก้ปัญหาได้</p>
+                        </div>
+                    </div>
+                    <div class="card rows">
+                        <div class="icon-bg">
+                            <i class="fa-brands fa-php fa-4x"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>PHP</h3>
+                            <p>มีความเข้าใจในภาษาระดับหนึ่ง สามารถเขียน ปรับแต่งและแก้ปัญหาได้บางอย่างเท่านั้น</p>
+                        </div>
+                    </div>
+                    <div class="card rows">
+                        <div class="icon-bg">
+                            <i class="fa-brands fa-python fa-4x"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>Python</h3>
+                            <p>มีแผนที่จะทำการศึกษาเพิ่มเติมในอนาคต ตอนนี้เพียงแค่สามารถเข้าใจและแก้ไขได้บางส่วนเท่านั้น</p>
+                        </div>
+                    </div>
+                </div>
+<!-- Project Me -->
+                <div id="project" class="title"><span class="highlight">Projects</span></div>
+                <p class="subtitle">ตัวอย่างผลงานของฉัน</p>
+                <div class="project-container">
+                    <div class="left-section">
+                        <div class="projects-img dfv"></div>
+                    </div>
+                    <div class="right-section">
+                        <div class="project-content">
+                            <h3>DisbledFrontView Mod (Java)</h3>
+                            <p>The DisableFrontView mod enhances gameplay immersion by disabling the front-facing third-person camera view (front perspective). When toggling the third-person perspective using the F5 key, this mod ensures you can only switch between the first-person view and the rear-facing third-person view.
+                                This mod is ideal for players who prefer a streamlined and consistent camera experience or find the front perspective distracting during gameplay.
+                            <span class="text-highlight">this mod is make for minecraft 1.8.9</span></p>
+                            <div class="project-btn">
+                                <button class="btn primary" onclick="window.open('https://modrinth.com/mod/disablefrontview', '_blank');">Modrinth</button>
+                                <button class="btn primary" onclick="window.open('https://github.com/Mifuyuu/DisableFrontView-1.8.9', '_blank');">GitHub<i class="fa-brands fa-github ico-white" style="font-size: 24px;"></i></button>
+                            </div>
+                            <!-- <div class="progress">
+                                <div class="progress-value"></div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="progress">
+                    <div class="progress-value"></div>
+                  </div> -->
+        </section>
+    </main>
+    <script src="script.min.js"></script>
+</body>
+</html>

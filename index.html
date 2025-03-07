@@ -2,63 +2,69 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <title>About Mifuyuu</title>
-    <link href="jquery-sakura.css" rel="stylesheet" type="text/css" />
-    <link href="main-styles.css" rel="stylesheet" type="text/css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tsuzaki Dev</title>
+    <link rel="stylesheet" href="castorice.min.css">
+    <link rel="stylesheet" href="index.responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
-    <div class="content-grid">
-        <div class="content-card content-layout-right">
-            <img src="assets/profile.jpg" alt="profile image" />
-            <div class="content-info">
-                <h3>Hi, I'm Mifuyuu</h3>
-                <p>
-                    My name is Mifuyuu, I'm a software engineer and I love to code. I'm
-                    a full stack developer and I'm passionate about creating beautiful
-                    and functional websites. I'm also a huge fan of anime and manga, and
-                    I love to watch and read them in my free time. I'm always looking
-                    for new projects to work on, so feel free to reach out to me if you
-                    have any ideas!
-                </p>
-            </div>
-        </div>
-
-        <div class="content-card content-layout-left" onclick="window.location.href='https://github.com/Mifuyuu/DisableFrontView-1.8.9'">
-            <img src="assets/dfv.png" alt="disablefrontview icon"/>
-            <div class="content-info">
-                <h3>DisableFrontView Mod</h3>
-                <p>
-                    About The DisableFrontView mod enhances gameplay immersion by
-                    disabling the front-facing third-person camera view (front
-                    perspective). When toggling the third-person perspective using the
-                    F5 key, this mod ensures you can only switch between the
-                    first-person view and the rear-facing third-person view.
-                </p>
-            </div>
-        </div>
-        <div class="content-card content-layout-left" onclick="window.location.href='https://mifuyuu.github.io/Seksun-web/'">
-            <!-- <img src="assets/dfv.png" alt="disablefrontview icon"/> -->
-            <div class="content-info">
-                <h3>Html Basic</h3>
-                <p>
-                    About The DisableFrontView mod enhances gameplay immersion by
-                    disabling the front-facing third-person camera view (front
-                    perspective). When toggling the third-person perspective using the
-                    F5 key, this mod ensures you can only switch between the
-                    first-person view and the rear-facing third-person view.
-                </p>
-            </div>
+    <div class="blob-outer-container">
+        <div class="blob-inner-container">
+            <div class="blob"></div>
         </div>
     </div>
-    <script src="jquery.min.js"></script>
-    <script src="jquery-sakura.min.js"></script>
-    <script>
-        $(window).load(function () {
-            $("body").sakura();
-        });
-    </script>
+    <header>
+        <nav class="navbar">
+            <h1 class="sitename">Castorice</h1>
+            <div class="nav-btn">
+                <!-- <a href="#">คำแนะนำ</a> -->
+                <button onclick="window.open('https://github.com/Mifuyuu', '_blank');" class="btn primary"><span id="github_links">GitHub</span>
+                    <i class="fa-brands fa-github ico-white" style="font-size: 24px;"></i>
+                    <!-- <i class="fa-solid fa-right-to-bracket"></i> -->
+                </button>
+                <div class="theme-changer">
+                    <i id="theme-icon" class="fa-solid fa-moon"></i>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="home-page">
+        <section class="content">
+            <div class="title">Welcome to
+                <span class="highlight">Seksun</span>'s Website
+            </div>
+                <p class="subtitle">ยินดีต้อนรับเข้าสู่เว็บไซต์ของฉัน คลิกปุ่มด้านล่างเพื่อเข้าสู่หน้าหลัก</p>
+                <button onclick="location.href='home.html';" class="btn primary icon-animation">เข้าสู่หน้าหลัก
+                    <i class="fa-solid fa-arrow-right ico-white"></i>
+                </button>
+                <div class="card-container">
+                    <div class="card">
+                        <div class="icon-bg">
+                            <i class="fa-solid fa-user fa-2x"></i>
+                        </div>
+                        <h3>เกี่ยวกับฉัน</h3>
+                        <p>ฉันเป็นนักพัฒนาเว็บไซต์ และนักออกแบบเว็บไซต์ฉันสร้างเว็บไซต์นี้เพื่อให้คุณทราบข้อมูลของฉัน</p>
+                    </div>
+                    <div class="card">
+                        <div class="icon-bg">
+                            <i class="fa-solid fa-folder-open fa-2x"></i>
+                        </div>
+                        <h3>ผลงานของฉัน</h3>
+                        <p>หน้าเว็บไซต์จะแสดงผลงานต่างๆ ของฉันไม่ว่าจะเป็นงานเกี่ยวกับการเขียนเว็บไซต์ การออกแบบ</p>
+                    </div>
+                    <div class="card">
+                        <div class="icon-bg">
+                            <i class="fa-solid fa-code fa-2x"></i>
+                        </div>
+                        <h3>แผนในอนาคต</h3>
+                        <p>แผนงานของฉันที่กำลังจะเริ่มทำในอนาคต ขอขอบคุณล่วงหน้าสำหรับการติดตามฉันนะ!</p>
+                    </div>
+                </div>
+        </section>
+    </main>
+    <script src="script.min.js"></script>
 </body>
-
 </html>

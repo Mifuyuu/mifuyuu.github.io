@@ -1,0 +1,80 @@
+@media screen and (max-width: 1200px) {
+    .content .title {
+        font-size: 48px;
+    }
+
+    .content .subtitle {
+        font-size: 20px;
+    }
+
+    .card-container {
+        gap: 24px;
+        flex-direction: column;
+    }
+
+    .card {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    .navbar {
+        padding: 16px 16px;
+        opacity: 1;
+        animation: none;
+    }
+
+    .home-page {
+        width: 100%;
+        padding: 16px;
+        margin-top: 15%;
+    }
+
+    .content {
+        flex-direction: column;
+        opacity: 1;
+        animation: none;
+    }
+
+    p {
+        font-size: 20px;
+    }
+
+    .card-container {
+        flex-direction: column;
+        gap: 24px;
+        opacity: 1;
+        animation: none;
+    }
+
+    .card {
+        width: 100%;
+        h3 {
+            font-size: 24px;
+        }
+        p {
+            font-size: 20px;
+        }
+    }
+
+    .btn {
+        font-size: 20px;
+        padding: 8px 24px;
+        gap: 8px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+    .home-page {
+        margin-top: 20%;
+    }
+    
+    .nav-btn .btn{
+        padding: 8px 8px;
+    }
+    #github_links {
+        display: none;
+    }
+}
