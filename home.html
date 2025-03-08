@@ -8,10 +8,9 @@
      <link rel="stylesheet" href="castorice.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* @import url(https://fonts.googleapis.com/css?family=Anonymous+Pro); */
-        /* .home-page {
-            margin-top: 5%;
-        } */
+        .home-page {
+            margin-top: 7%;
+        }
 
         .content {
             max-width: 1200px;
@@ -142,6 +141,7 @@
         .grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
+            animation: slideInFromRight 3.5s ease-in-out forwards;
             .card {
                 width: 100%;
                 p {
@@ -166,7 +166,7 @@
             align-items: center;
             /* background-color: #2b2b2b46; */
             /* border-radius: 10px; */
-            padding: 24px;
+            padding: 0 24px;
             /* gap: 24px; */
         }
 
@@ -225,11 +225,12 @@
 
         .abouts {
             display: flex;
-            margin: 0 24px;
+            /* margin: 0 24px; */
             justify-content: center;
             align-items: center;
-            gap: 0;
+            gap: 48px;
             /* background-color: black; */
+            animation: slideInFromRight 1.5s ease-in-out forwards;
         }
 
         .p-right-section {
@@ -240,7 +241,7 @@
             /* gap: 24px; */
             img {
                 width: 100%;
-                filter: drop-shadow(5px 5px 5px rgba(82, 151, 255, 0.15));
+                filter: drop-shadow(5px 5px 5px rgba(54, 85, 178, .12));
             }
         }
 
@@ -266,7 +267,10 @@
 
         .size1x {
             font-size: 2rem !important;
-            /* font-family: 'Anonymous Pro', sans-serif; */
+        }
+
+        .size1-5x {
+            font-size: 2.5rem !important;
         }
 
         .size2x {
@@ -274,7 +278,7 @@
         }
 
         .size2-5x {
-            font-size: 3.5rem !important;
+            font-size: 3rem !important;
             text-transform: uppercase;
             font-weight: 900;
 
@@ -283,6 +287,17 @@
         .show-text {
             display: none;
         }
+
+
+/* --------------------- Text Switch -----------------------*/
+
+.fade {
+    display: inline-block;
+    transition: opacity 0.5s ease-in-out;
+  }
+  .fade-out {
+    opacity: 0;
+  }
 
 /* ----------------------- Cursor --------------------------*/
 
@@ -546,14 +561,6 @@
                 }
             }
 
-            .size2-5x {
-                font-size: 2.5rem !important;
-            }
-
-            .size2x {
-                font-size: 2rem !important;
-            }
-
             .p-right-section {
                 img {
                     width: 200%;
@@ -592,13 +599,13 @@
             <div class="card-container abouts">
                 <div class="p-left-section">
                     <div class="title size2x">Hello,<br>My name is <span class="highlight">Seksun</span></div>
-                    <h3 class="title size2x">I'm a web developer and designer</h3>
+                    <h3 class="title size1-5x">I'm a web <span id="switch" class="fade">developer</span></h3>
                     <p class="subtitle size1x cursor" id="typewriter"></p>
                     <p class="subtitle size1x show-text">I'm excited to continue learning and growing as a developer and designer.</p>
-                    <div class="size2-5x"><span class="highlight">Coding is a Magic</span></div>
+                    <div class="size2-5x"><span style="color: var(--primary-color);">Coding is a Magic</span></div>
                 </div>
                 <div class="p-right-section">
-                    <img src="img/castorice.png" alt="Castorice">
+                    <img src="img/castorice-new.png" alt="Castorice">
                 </div>
             </div>
             <div class="title spacer"><span class="highlight">About Me</span></div>
@@ -613,18 +620,18 @@
                     <div class="card-content highres">
                         <h3>ประวัติ</h3>
                         <p><span class="text-highlight">ชื่อ-สกุล :</span> นายเสกสรรญ หลำวรรณะ</p>
-                        <p><span class="text-highlight">เบอร์โทรศัพท์ :</span> 065-668-58XX</p>
-                        <p><span class="text-highlight">เมลล์ :</span> 664230033@webmail.npru.ac.th</p>
+                        <!-- <p><span class="text-highlight">เบอร์โทรศัพท์ :</span> 065-668-58XX</p> -->
+                        <p><span class="text-highlight">เมลล์ :</span> 664230XXX@webmail.npru.ac.th</p>
                         <p><span class="text-highlight">คติ :</span> ให้เป็นเรื่องของตัวเราในวันพรุ่งนี้</p>
                     </div>
                     <div class="card-content lowres">
                         <h3>ประวัติ</h3>
                         <p><span class="text-highlight">ชื่อ-สกุล :</span></p>
                         <p>นายเสกสรรญ หลำวรรณะ</p>
-                        <p><span class="text-highlight">เบอร์โทรศัพท์ :</span></p>
-                        <p>065-668-58XX</p>
+                        <!-- <p><span class="text-highlight">เบอร์โทรศัพท์ :</span></p>
+                        <p>065-668-58XX</p> -->
                         <p><span class="text-highlight">เมลล์ :</span></p>
-                        <p>664230033 @webmail.npru.ac.th</p>
+                        <p>664230XXX@webmail.npru.ac.th</p>
                         <p><span class="text-highlight">คติ :</span></p>
                         <p>ให้เป็นเรื่องของตัวเราในวันพรุ่งนี้</p>
                     </div>
@@ -761,18 +768,18 @@
 
         function typeEffect() {
             if (!deleting) {
-                // พิมพ์ข้อความ
+
                 typewriterElement.textContent = text.slice(0, index++);
                 if (index === text.length) {
                     setTimeout(() => {
                         deleting = true;
-                    }, 2000);  // เลื่อนการเปลี่ยนไปโหมดลบให้ช้าลง
+                    }, 2000);
                 }
             } else {
-                // ลบข้อความ
+
                 typewriterElement.textContent = text.slice(0, index--);
                 if (index === 0) {
-                    deleting = false; // เปลี่ยนกลับไปโหมดพิมพ์
+                    deleting = false;
                 }
             }
 
@@ -780,6 +787,19 @@
         }
 
         typeEffect();
+
+        const words = ["developer", "designer"];
+        let wordIndex = 0;
+        const element = document.getElementById("switch");
+
+        setInterval(() => {
+            element.classList.add("fade-out");
+            setTimeout(() => {
+            wordIndex = (wordIndex + 1) % words.length;
+            element.textContent = words[wordIndex];
+            element.classList.remove("fade-out");
+            }, 500);
+        }, 2000);
     </script>
 </body>
 </html>

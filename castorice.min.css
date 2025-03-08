@@ -3,10 +3,6 @@
 
 :root {
     --primary-color: #2563eb;
-    --secondary-color: #4c00ff;
-    --tertiary-color: #97f7f7;
-    --quaternary-color: #4e26ab;
-    --quinary-color: #09f;
     --white: #fff;
     --black: #202020;
     --transition: all 0.3s ease-in-out;
