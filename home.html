@@ -8,6 +8,10 @@
      <link rel="stylesheet" href="castorice.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
+        /* @import url(https://fonts.googleapis.com/css?family=Anonymous+Pro); */
+        /* .home-page {
+            margin-top: 5%;
+        } */
 
         .content {
             max-width: 1200px;
@@ -199,7 +203,8 @@
             p {
                 font-size: 18px;
                 line-height: 1.6;
-                transition: none;
+                text-align: start !important;
+                /* transition: none; */
                 .text-highlight {
                     color: var(--primary-color);
                 }
@@ -213,6 +218,82 @@
                 }
             }
         }
+
+        .spacer {
+            margin-top: 20%;
+        }
+
+        .abouts {
+            display: flex;
+            margin: 0 24px;
+            justify-content: center;
+            align-items: center;
+            gap: 0;
+            /* background-color: black; */
+        }
+
+        .p-right-section {
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* gap: 24px; */
+            img {
+                width: 100%;
+                filter: drop-shadow(5px 5px 5px rgba(82, 151, 255, 0.15));
+            }
+        }
+
+        .p-left-section {
+            color: var(--text-color);
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            /* gap: 24px; */
+            h3 {
+                font-size: 24px;
+                color: var(--primary-color);
+            }
+            p {
+                font-size: 20px;
+                line-height: 1.6;
+                font-weight: 500;
+            }
+        }
+
+        .size1x {
+            font-size: 2rem !important;
+            /* font-family: 'Anonymous Pro', sans-serif; */
+        }
+
+        .size2x {
+            font-size: 3rem !important;
+        }
+
+        .size2-5x {
+            font-size: 3.5rem !important;
+            text-transform: uppercase;
+            font-weight: 900;
+
+        }
+
+        .show-text {
+            display: none;
+        }
+
+/* ----------------------- Cursor --------------------------*/
+
+.cursor::after {
+        content: '|';
+        display: inline-block;
+        animation: blink 0.5s infinite;
+    }
+    @keyframes blink {
+        50% { opacity: 0; }
+    }
 
 /* ----------------------- Progress -----------------------*/
 
@@ -372,19 +453,40 @@
             .project-btn {
                 justify-content: center;
             }
-        
 
         }
+        .abouts {
+            gap: 24px;
+        }
+
+        .p-right-section {
+            img {
+                width: 150%;
+            }
+        }
+        
+        #typewriter {
+            display: none;
+        }
+
+        .show-text {
+            display: inline-block;
+        }
+
     }
 
         @media screen and (max-width: 480px) {
+
+            .card-container {
+                padding: 0;
+            }
 
             body {
                 scroll-behavior: auto;
             }
 
             .home-page {
-                margin-top: 20%;
+                margin-top: 30%;
             }
 
             .profile-box {
@@ -444,6 +546,20 @@
                 }
             }
 
+            .size2-5x {
+                font-size: 2.5rem !important;
+            }
+
+            .size2x {
+                font-size: 2rem !important;
+            }
+
+            .p-right-section {
+                img {
+                    width: 200%;
+                }
+            }
+
         }
 
     </style>
@@ -473,35 +589,47 @@
     <main class="home-page">
         <section class="content">
 <!-- About Me -->
-            <div class="title"><span class="highlight">About Me</span></div>
+            <div class="card-container abouts">
+                <div class="p-left-section">
+                    <div class="title size2x">Hello,<br>My name is <span class="highlight">Seksun</span></div>
+                    <h3 class="title size2x">I'm a web developer and designer</h3>
+                    <p class="subtitle size1x cursor" id="typewriter"></p>
+                    <p class="subtitle size1x show-text">I'm excited to continue learning and growing as a developer and designer.</p>
+                    <div class="size2-5x"><span class="highlight">Coding is a Magic</span></div>
+                </div>
+                <div class="p-right-section">
+                    <img src="img/castorice.png" alt="Castorice">
+                </div>
+            </div>
+            <div class="title spacer"><span class="highlight">About Me</span></div>
             <p class="subtitle">เกี่ยวกับฉัน ข้อมูลด้านล่างนี้จะแสดงรายละเอียดของตัวฉันในตอนนี้อย่างคร่าว ๆ</p>
-                <div class="card-container cols">
-                    <div class="card rows">
-                        <div class="card-front">
-                            <div class="profile-box">
-                                <div class="profile-img"></div>
-                            </div>
-                        </div>
-                        <div class="card-content highres">
-                            <h3>ประวัติ</h3>
-                            <p><span class="text-highlight">ชื่อ-สกุล :</span> นายเสกสรรญ หลำวรรณะ</p>
-                            <p><span class="text-highlight">เบอร์โทรศัพท์ :</span> 065-668-58XX</p>
-                            <p><span class="text-highlight">เมลล์ :</span> 664230033@webmail.npru.ac.th</p>
-                            <p><span class="text-highlight">คติ :</span> ให้เป็นเรื่องของตัวเราในวันพรุ่งนี้</p>
-                        </div>
-                        <div class="card-content lowres">
-                            <h3>ประวัติ</h3>
-                            <p><span class="text-highlight">ชื่อ-สกุล :</span></p>
-                            <p>นายเสกสรรญ หลำวรรณะ</p>
-                            <p><span class="text-highlight">เบอร์โทรศัพท์ :</span></p>
-                            <p>065-668-58XX</p>
-                            <p><span class="text-highlight">เมลล์ :</span></p>
-                            <p>664230033 @webmail.npru.ac.th</p>
-                            <p><span class="text-highlight">คติ :</span></p>
-                            <p>ให้เป็นเรื่องของตัวเราในวันพรุ่งนี้</p>
+            <div class="card-container cols">
+                <div class="card rows">
+                    <div class="card-front">
+                        <div class="profile-box">
+                            <div class="profile-img"></div>
                         </div>
                     </div>
+                    <div class="card-content highres">
+                        <h3>ประวัติ</h3>
+                        <p><span class="text-highlight">ชื่อ-สกุล :</span> นายเสกสรรญ หลำวรรณะ</p>
+                        <p><span class="text-highlight">เบอร์โทรศัพท์ :</span> 065-668-58XX</p>
+                        <p><span class="text-highlight">เมลล์ :</span> 664230033@webmail.npru.ac.th</p>
+                        <p><span class="text-highlight">คติ :</span> ให้เป็นเรื่องของตัวเราในวันพรุ่งนี้</p>
+                    </div>
+                    <div class="card-content lowres">
+                        <h3>ประวัติ</h3>
+                        <p><span class="text-highlight">ชื่อ-สกุล :</span></p>
+                        <p>นายเสกสรรญ หลำวรรณะ</p>
+                        <p><span class="text-highlight">เบอร์โทรศัพท์ :</span></p>
+                        <p>065-668-58XX</p>
+                        <p><span class="text-highlight">เมลล์ :</span></p>
+                        <p>664230033 @webmail.npru.ac.th</p>
+                        <p><span class="text-highlight">คติ :</span></p>
+                        <p>ให้เป็นเรื่องของตัวเราในวันพรุ่งนี้</p>
+                    </div>
                 </div>
+            </div>
 <!-- My Education -->
                 <div class="title"><span class="highlight">education</span></div>
                 <p class="subtitle">รายละเอียดประวัติการศึกษาของฉัน ข้อมูลด้านล่างนี้จะแสดงประวัติการศึกษาของฉัน เริ่มตั้งแต่ระดับประถมศึกษา จนถึงปัจจุบัน</p>
@@ -598,7 +726,7 @@
                 </div>
 <!-- Project Me -->
                 <div id="project" class="title"><span class="highlight">Projects</span></div>
-                <p class="subtitle">ตัวอย่างผลงานของฉัน</p>
+                <!-- <p class="subtitle">ตัวอย่างผลงานของฉัน</p> -->
                 <div class="project-container">
                     <div class="left-section">
                         <div class="projects-img dfv"></div>
@@ -606,7 +734,7 @@
                     <div class="right-section">
                         <div class="project-content">
                             <h3>DisbledFrontView Mod (Java)</h3>
-                            <p>The DisableFrontView mod enhances gameplay immersion by disabling the front-facing third-person camera view (front perspective). When toggling the third-person perspective using the F5 key, this mod ensures you can only switch between the first-person view and the rear-facing third-person view.
+                            <p class="subtitle">The DisableFrontView mod enhances gameplay immersion by disabling the front-facing third-person camera view (front perspective). When toggling the third-person perspective using the F5 key, this mod ensures you can only switch between the first-person view and the rear-facing third-person view.
                                 This mod is ideal for players who prefer a streamlined and consistent camera experience or find the front perspective distracting during gameplay.
                             <span class="text-highlight">this mod is make for minecraft 1.8.9</span></p>
                             <div class="project-btn">
@@ -625,5 +753,33 @@
         </section>
     </main>
     <script src="script.min.js"></script>
+    <script>
+        const text = "I'm excited to continue learning and growing as a developer and designer.";
+        const typewriterElement = document.getElementById("typewriter");
+        let index = 0;
+        let deleting = false;
+
+        function typeEffect() {
+            if (!deleting) {
+                // พิมพ์ข้อความ
+                typewriterElement.textContent = text.slice(0, index++);
+                if (index === text.length) {
+                    setTimeout(() => {
+                        deleting = true;
+                    }, 2000);  // เลื่อนการเปลี่ยนไปโหมดลบให้ช้าลง
+                }
+            } else {
+                // ลบข้อความ
+                typewriterElement.textContent = text.slice(0, index--);
+                if (index === 0) {
+                    deleting = false; // เปลี่ยนกลับไปโหมดพิมพ์
+                }
+            }
+
+            setTimeout(typeEffect, deleting ? 50 : 70);
+        }
+
+        typeEffect();
+    </script>
 </body>
 </html>

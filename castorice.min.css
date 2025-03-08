@@ -20,12 +20,12 @@
 /* ----------------------- Light Theme -----------------------*/
 
 .light-theme {
-    --title-color: #202020;
+    --title-color: #2c2c2c;
     --navbar-background-color: #fff;
     --background-color: #fafafa;
-    --text-color: #202020;
+    --text-color: #2c2c2c;
     --box-background-color: #fff;
-    --box-text-color: #202020;
+    --box-text-color: #2c2c2c;
     /* --card-background-color: #ffffff75; */
     --card-background-color: hsla(0,0%,100%,.5);
 
