@@ -235,7 +235,7 @@ body {
 
 .highlight {
     /* background: linear-gradient(to top right, #7bb1ff, #a6aaff, #f1b9f3, #9dfdfd, #7bb1ff, #a6aaff, #f1b9f3, #9dfdfd, #7bb1ff); */
-    background: linear-gradient(to top right, #a97bff, #a6aaff, #d597f8, #bc94fd, #a97bff, #a6aaff, #d597f8, #bc94fd, #a97bff);
+    background: linear-gradient(to top right, #a97bff, #bc94fd, #e5a6ff, #d597f8, #bc94fd, #a97bff, #e5a6ff, #d597f8, #bc94fd);
     background-clip: text;
     color: transparent;
     background-size: 200% 200%;
