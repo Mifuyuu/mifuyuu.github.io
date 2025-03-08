@@ -2,21 +2,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&display=swap');
 
 :root {
-    --primary-color: #2563eb;
+    /* --primary-color: #2563eb; */
     --primary-color: #b170db;
+    --secondary-color: #713a96;
     --white: #fff;
     --black: #202020;
     --transition: all 0.3s ease-in-out;
     --card-border: #00000010 solid 1px;
-    --box-shadow: 0 6px 16px -2px rgba(54, 85, 178, 0.35);
+    /* BLUE */
+    /* --box-shadow: 0 6px 16px -2px rgba(54, 85, 178, 0.35);
+    --card-shadow: 0 6px 16px -2px rgba(54, 85, 178, .12); */
+    
     /* --box-shadow: 0 6px 16px -2px rgba(0, 64, 255, 0.356); */
-    --card-shadow: 0 6px 16px -2px rgba(54, 85, 178, .12);
+
+    /* PURPLE */
+    --box-shadow: 0 6px 16px -2px rgba(128, 54, 178, 0.35);
+    --card-shadow: 0 6px 16px -2px rgba(128, 54, 178, 0.12);
     --btn-border-radius: 7px;
 }
 
 /* ----------------------- Light Theme -----------------------*/
 
 .light-theme {
+    --shade-top: #d7a7f7;
+    --shade-bottom: #dd88ff;
     --title-color: #2c2c2c;
     --navbar-background-color: #fff;
     --background-color: #fafafa;
@@ -31,6 +40,8 @@
 /* ----------------------- Dark Theme -----------------------*/
 
 .dark-theme {
+    --shade-top: #b170db;
+    --shade-bottom: #8f4dfa;
     --title-color: #fff;
     --navbar-background-color: #1a1a1a;
     --background-color: #202020;
@@ -74,7 +85,8 @@
     inset: 0;
     margin: auto;
     filter: blur(100px);
-    opacity: 0.5;
+    /* opacity: 0.5; */
+    opacity: 0.3;
 }
 
 .blob-inner-container {
@@ -95,7 +107,8 @@
     height: 100vh;
     inset: 0;
     margin: auto;
-    background: conic-gradient(from 0deg, #7bb1ff, #a6aaff, #f1b9f3, #9dfdfd, #7bb1ff, #a6aaff, #f1b9f3, #9dfdfd, #7bb1ff);
+    /* background: conic-gradient(from 0deg, #7bb1ff, #a6aaff, #f1b9f3, #9dfdfd, #7bb1ff, #a6aaff, #f1b9f3, #9dfdfd, #7bb1ff); */
+    background: conic-gradient(from 0deg, #b97bff, #8050f1, #b181ff, #c79dfd, #ca7bff, #a6aaff, #b181ff, #7a47f1, #987bff);
     animation: spinBlob 8s linear infinite;
 }
 
@@ -221,7 +234,8 @@ body {
 }
 
 .highlight {
-    background: linear-gradient(to top right, #7bb1ff, #a6aaff, #f1b9f3, #9dfdfd, #7bb1ff, #a6aaff, #f1b9f3, #9dfdfd, #7bb1ff);
+    /* background: linear-gradient(to top right, #7bb1ff, #a6aaff, #f1b9f3, #9dfdfd, #7bb1ff, #a6aaff, #f1b9f3, #9dfdfd, #7bb1ff); */
+    background: linear-gradient(to top right, #a97bff, #a6aaff, #d597f8, #bc94fd, #a97bff, #a6aaff, #d597f8, #bc94fd, #a97bff);
     background-clip: text;
     color: transparent;
     background-size: 200% 200%;
@@ -281,7 +295,10 @@ body {
 } */
 
 .card .icon-bg {
-    background: linear-gradient(to bottom, rgba(96, 173, 255, 0.25), rgba(0, 123, 255, 0) 99%);
+    /* BLUE */
+    /* background: linear-gradient(to bottom, rgba(96, 173, 255, 0.25), rgba(0, 123, 255, 0) 99%); */
+    /* PURPLE */
+    background: linear-gradient(to bottom, rgba(197, 96, 255, 0.25), rgba(153, 0, 255, 0) 99%);
     /* background: linear-gradient(135deg, rgba(79, 70, 229, 0.2), rgba(6, 182, 212, 0.1));
     background: linear-gradient(to bottom, rgba(79, 70, 229, 0.2), rgba(6, 182, 212, 0.1)); */
     padding: 20px;
@@ -359,7 +376,7 @@ body {
         background-color: var(--primary-color);
 
         &:hover {
-            background-color: #133999;
+            background-color: var(--secondary-color);
             transform: translateY(-2px);
             transition: var(--transition);
         }
