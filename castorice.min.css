@@ -331,7 +331,8 @@ body {
 
 .card:hover i {
     transform: scale(1.2);
-    filter: drop-shadow(0 0 8px rgba(79, 70, 229, 0.5));
+    /* filter: drop-shadow(0 0 8px rgba(79, 70, 229, 0.5)); */
+    filter: drop-shadow(0 0 8px rgba(154, 45, 255, 0.5));
 }
 
 .card i {
