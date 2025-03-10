@@ -78,7 +78,8 @@
 /* ----------------------- Background -----------------------*/
 
 .blob-outer-container {
-    position: fixed;
+    /* position: fixed; */
+    position: absolute;
     height: 100%;
     width: 100%;
     z-index: 0;
@@ -86,7 +87,7 @@
     margin: auto;
     filter: blur(100px);
     /* opacity: 0.5; */
-    opacity: 0.3;
+    opacity: 0.35;
 }
 
 .blob-inner-container {
