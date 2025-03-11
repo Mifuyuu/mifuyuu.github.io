@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tsuzaki Dev</title>
-     <link rel="stylesheet" href="castorice.min.css">
+    <link rel="stylesheet" href="castorice.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="img/favicon.png" />
     <style>
         .home-page {
             margin-top: 7%;
@@ -161,65 +162,6 @@
             }
         }
 
-        .project-container {
-            display: flex;
-            align-items: center;
-            /* background-color: #2b2b2b46; */
-            /* border-radius: 10px; */
-            padding: 0 24px;
-            /* gap: 24px; */
-            margin-bottom: 48px;
-        }
-
-        .left-section {
-            width: 30%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .projects-img {
-            width: 100%;
-            border-radius: 10px;
-            background-repeat: no-repeat;
-            background-size: contain;
-            background-position: 50%;
-            &.dfv {
-                background-image: url('img/java-pjx.png');
-                height: 324px;
-            }
-        }
-
-        .right-section {
-            width: 70%;
-            display: flex;
-            justify-content: center;
-            align-items: baseline;
-            color: var(--text-color);
-            h3 {
-                color: var(--primary-color);
-                font-size: 24px;
-                margin-bottom: 12px;
-            }
-            p {
-                font-size: 18px;
-                line-height: 1.6;
-                text-align: start !important;
-                /* transition: none; */
-                .text-highlight {
-                    color: var(--primary-color);
-                }
-            }
-            .project-btn {
-                display: flex;
-                gap: 24px;
-                button {
-                    padding: 8px 16px;
-                    margin-top: 12px;
-                }
-            }
-        }
-
         .spacer {
             margin-top: 20%;
         }
@@ -314,15 +256,34 @@
         .certificate-container {
             color: var(--text-color);
             margin-top: 48px;
+            padding: 0 24px;
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 24px;
+
+            &.reverse {
+                flex-direction: row-reverse;
+            }
+
             img {
                 object-fit: cover;
-                width: 50%;
+                width: 40%;
                 border-radius: 10px;
+                
+                &:hover {
+                    transform: scale(1.01);
+                    box-shadow: 0px 0px 25px 5px rgba(161, 64, 240, 0.12);
+                }
+                &.spacial {
+                    &:hover {
+                        transform: scale(1.05);
+                        filter: drop-shadow(10px 10px 10px rgba(161, 64, 240, 0.12));
+                        box-shadow: none;
+                    }
+                }
             }
+
             h2 {
                 margin-bottom: 24px;
                 text-align: center;
@@ -331,18 +292,27 @@
 
         }
 
-        .certificate-container.reverse {
-            color: var(--text-color);
-            margin-top: 48px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 24px;
-            flex-direction: row-reverse;
-            img {
-                object-fit: cover;
-                width: 50%;
-                border-radius: 10px;
+        .certi-content {
+            h3 {
+                color: var(--primary-color);
+                font-size: 24px;
+                margin-bottom: 12px;
+            }
+            p {
+                font-size: 18px;
+                line-height: 1.6;
+                text-align: start !important;
+                .text-highlight {
+                    color: var(--primary-color);
+                }
+            }
+            .btn-columns {
+                display: flex;
+                gap: 24px;
+                button {
+                    padding: 8px 16px;
+                    margin-top: 12px;
+                }
             }
         }
 
@@ -355,8 +325,8 @@
             display: none;
             width: 100%;
             border: 0;
-            height: 2px;
-            background: var(--primary-color);
+            height: 5px;
+            background: var(--card-background-color);
             margin: 24px 0;
             box-shadow: none;
         }
@@ -364,6 +334,14 @@
         .alinks {
             color: var(--text-color);
             text-decoration: none;
+        }
+
+        .mt {
+            margin-top: 24px;
+        }
+
+        .mb {
+            margin-bottom: 24px;
         }
 
 /* --------------------- Text Switch -----------------------*/
@@ -386,34 +364,6 @@
     @keyframes blink {
         50% { opacity: 0; }
     }
-
-/* ----------------------- Progress -----------------------*/
-
-        .progress {
-            background: rgba(138, 138, 138, 0.1);
-            /* background: #2563eb; */
-            justify-content: flex-start;
-            border-radius: 100px;
-            align-items: center;
-            position: relative;
-            padding: 0 5px;
-            display: flex;
-            height: 30px;
-        }
-
-        .progress-value {
-            animation: load 3s normal forwards;
-            box-shadow: 0 10px 40px -10px #fff;
-            border-radius: 100px;
-            background: #fff;
-            height: 20px;
-            width: 0;
-            }
-
-        @keyframes load {
-            0% { width: 0; }
-            100% { width: 68%; }
-        }
 
 /* ----------------------- Responsive -----------------------*/
 
@@ -536,55 +486,33 @@
                 padding: 8px 8px;
             }
 
-            .project-container {
+            .abouts {
+                gap: 24px;
+            }
+
+            .p-right-section {
+                img {
+                    width: 150%;
+                }
+            }
+
+            .certificate-container, .certificate-container.reverse {
                 flex-direction: column;
+                /* margin: 0px 12px; */
+                gap: 24px;
+                img {
+                    width: 100%;
+                }
+            }
+
+            .btn-columns {
                 justify-content: center;
-                align-items: center;
-                /* gap: 24px; */
-
-            .left-section, .right-section {
-                width: 100%;
+                gap: 12px;
             }
 
-            .projects-img {
-                width: 50%;
-                height: 200px;
+            hr {
+                display: block;
             }
-
-            .right-section h3 {
-                text-align: center;
-            }
-            .project-btn {
-                justify-content: center;
-            }
-
-        }
-        .abouts {
-            gap: 24px;
-        }
-
-        .p-right-section {
-            img {
-                width: 150%;
-            }
-        }
-
-        .certificate-container, .certificate-container.reverse {
-            margin: 0 24px;
-            gap: 0px;
-        }
-
-        .certificate-container, .certificate-container.reverse {
-            flex-direction: column;
-            gap: 24px;
-            img {
-                width: 100%;
-            }
-        }
-
-        hr {
-            display: block;
-        }
     }
 
         @media screen and (max-width: 480px) {
@@ -673,6 +601,10 @@
                     width: 200%;
                 }
             }
+
+            .certificate-container, .certificate-container.reverse {
+                padding: 0;
+            }
         }
 
     </style>
@@ -731,7 +663,6 @@
                         <p><span class="text-highlight">Gmail :</span> 664230XXX@webmail.npru.ac.th</p>
                         <p><span class="text-highlight">Facebook :</span> <a href="https://www.facebook.com/kz.kenkung"  target="_blank" class="alinks">KZ KenKung</a></p>
                         <p><span class="text-highlight">Discord :</span> _tsuzaki</p>
-                        
                     </div>
                     <div class="card-content lowres">
                         <h3>ประวัติ</h3>
@@ -842,37 +773,40 @@
                         </div>
                     </div>
                 </div>
-<!-- Project Me -->
+<!-- My Project -->
+            <div class="mb">
                 <div class="title"><span class="highlight">Project</span></div>
-                <!-- <p class="subtitle">ตัวอย่างผลงานของฉัน</p> -->
-                <div class="project-container">
-                    <div class="left-section">
-                        <div class="projects-img dfv"></div>
-                    </div>
-                    <div class="right-section">
-                        <div class="project-content">
-                            <h3>DisbledFrontView Mod (Java)</h3>
-                            <p class="subtitle">The DisableFrontView mod enhances gameplay immersion by disabling the front-facing third-person camera view (front perspective). When toggling the third-person perspective using the F5 key, this mod ensures you can only switch between the first-person view and the rear-facing third-person view.
-                                This mod is ideal for players who prefer a streamlined and consistent camera experience or find the front perspective distracting during gameplay.
-                            <span class="text-highlight">this mod is make for minecraft 1.8.9</span></p>
-                            <div class="project-btn">
-                                <button class="btn primary" onclick="window.open('https://modrinth.com/mod/disablefrontview', '_blank');">Modrinth</button>
-                                <button class="btn primary" onclick="window.open('https://github.com/Mifuyuu/DisableFrontView-1.8.9', '_blank');">GitHub<i class="fa-brands fa-github ico-white" style="font-size: 24px;"></i></button>
-                            </div>
-                            <!-- <div class="progress">
-                                <div class="progress-value"></div>
-                            </div> -->
+                <div class="certificate-container">
+                    <img src="img/java-pjx.png" alt="Java Project" class="spacial">
+                    <div class="certi-content">
+                        <h2>DisbledFrontView Mod (Java)</h2>
+                        <p class="subtitle certi-text">The DisableFrontView mod enhances gameplay immersion by disabling the front-facing third-person camera view (front perspective). When toggling the third-person perspective using the F5 key, this mod ensures you can only switch between the first-person view and the rear-facing third-person view. This mod is ideal for players who prefer a streamlined and consistent camera experience or find the front perspective distracting during gameplay.<span class="text-highlight"> this mod is make for minecraft 1.8.9</span></p>
+                        <div class="btn-columns">
+                            <button class="btn primary" onclick="window.open('https://modrinth.com/mod/disablefrontview', '_blank');">Modrinth</button>
+                            <button class="btn primary" onclick="window.open('https://github.com/Mifuyuu/DisableFrontView-1.8.9', '_blank');">GitHub<i class="fa-brands fa-github ico-white" style="font-size: 24px;"></i></button>
                         </div>
                     </div>
                 </div>
+                <div class="certificate-container reverse">
+                        <img src="img/mapbuilding-pjx.jpg" alt="Minecraft Map Project">
+                        <div class="certi-content">
+                            <h2>Minecraft Map Builder</h2>
+                            <p class="subtitle certi-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum sed repellat cum sint numquam fugit hic doloremque facere odit deserunt minima placeat, iure, ut in eius alias, non voluptatum eos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo possimus aliquid inventore aliquam. Vel harum voluptatibus qui dicta velit, doloremque tempora accusamus labore, laboriosam earum ipsa molestias ut cupiditate excepturi?</p>
+                            <div class="btn-columns">
+                                <button class="btn primary" onclick="window.open('https://www.facebook.com/KenKungShop', '_blank');">Show More!</button>
+                            </div>
+                    </div>
+                </div>
+            </div>
+<!-- My Certificate -->
+            <div class="mt">
                 <div class="title"><span class="highlight">Certificate</span></div>
-                <!-- <p class="subtitle">ตัวอย่างผลงานของฉัน</p> -->
                 <div class="certificate-container">
                     <img src="img/cer-1.png" alt="Certificate">
                     <div class="certi-content">
                         <h2>Certificate 1</h2>
-                        <p class="subtitle certi-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum sed repellat cum sint numquam fugit hic doloremque facere odit deserunt minima placeat, iure, ut in eius alias, non voluptatum eos.</p>
-                        <p class="subtitle certi-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo possimus aliquid inventore aliquam. Vel harum voluptatibus qui dicta velit, doloremque tempora accusamus labore, laboriosam earum ipsa molestias ut cupiditate excepturi?</p>
+                        <p class="subtitle certi-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum sed repellat cum sint numquam fugit hic doloremque facere odit deserunt minima placeat,iure, ut in eius alias, non voluptatum eos.</p>
+                        <p class="subtitle certi-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo possimus aliquid inventore aliquam. Vel harum voluptatibus qui dicta velit, doloremquetempora accusamus labore, laboriosam earum ipsa molestias ut cupiditate excepturi?</p>
                         <hr>
                     </div>
                 </div>
@@ -880,8 +814,8 @@
                     <img src="img/cer-2.png" alt="Certificate">
                     <div class="certi-content">
                         <h2>Certificate 2</h2>
-                        <p class="subtitle certi-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum sed repellat cum sint numquam fugit hic doloremque facere odit deserunt minima placeat, iure, ut in eius alias, non voluptatum eos.</p>
-                        <p class="subtitle certi-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo possimus aliquid inventore aliquam. Vel harum voluptatibus qui dicta velit, doloremque tempora accusamus labore, laboriosam earum ipsa molestias ut cupiditate excepturi?</p>
+                        <p class="subtitle certi-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum sed repellat cum sint numquam fugit hic doloremque facere odit deserunt minima placeat,iure, ut in eius alias, non voluptatum eos.</p>
+                        <p class="subtitle certi-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo possimus aliquid inventore aliquam. Vel harum voluptatibus qui dicta velit, doloremquetempora accusamus labore, laboriosam earum ipsa molestias ut cupiditate excepturi?</p>
                         <hr>
                     </div>
                 </div>
@@ -889,8 +823,8 @@
                     <img src="img/cer-3.png" alt="Certificate">
                     <div class="certi-content">
                         <h2>Certificate 3</h2>
-                        <p class="subtitle certi-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum sed repellat cum sint numquam fugit hic doloremque facere odit deserunt minima placeat, iure, ut in eius alias, non voluptatum eos.</p>
-                        <p class="subtitle certi-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo possimus aliquid inventore aliquam. Vel harum voluptatibus qui dicta velit, doloremque tempora accusamus labore, laboriosam earum ipsa molestias ut cupiditate excepturi?</p>
+                        <p class="subtitle certi-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum sed repellat cum sint numquam fugit hic doloremque facere odit deserunt minima placeat,iure, ut in eius alias, non voluptatum eos.</p>
+                        <p class="subtitle certi-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo possimus aliquid inventore aliquam. Vel harum voluptatibus qui dicta velit, doloremquetempora accusamus labore, laboriosam earum ipsa molestias ut cupiditate excepturi?</p>
                         <hr>
                     </div>
                 </div>
@@ -898,14 +832,12 @@
                     <img src="img/cer-4.png" alt="Certificate">
                     <div class="certi-content">
                         <h2>Certificate 4</h2>
-                        <p class="subtitle certi-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum sed repellat cum sint numquam fugit hic doloremque facere odit deserunt minima placeat, iure, ut in eius alias, non voluptatum eos.</p>
-                        <p class="subtitle certi-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo possimus aliquid inventore aliquam. Vel harum voluptatibus qui dicta velit, doloremque tempora accusamus labore, laboriosam earum ipsa molestias ut cupiditate excepturi?</p>
+                        <p class="subtitle certi-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum sed repellat cum sint numquam fugit hic doloremque facere odit deserunt minima placeat,iure, ut in eius alias, non voluptatum eos.</p>
+                        <p class="subtitle certi-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo possimus aliquid inventore aliquam. Vel harum voluptatibus qui dicta velit, doloremquetempora accusamus labore, laboriosam earum ipsa molestias ut cupiditate excepturi?</p>
                         <hr>
                     </div>
                 </div>
-                <!-- <div class="progress">
-                    <div class="progress-value"></div>
-                  </div> -->
+            </div>
         </section>
     </main>
     <footer class="footer-container">
