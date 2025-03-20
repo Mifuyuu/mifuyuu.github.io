@@ -493,6 +493,7 @@ body {
     justify-content: center;
     align-items: center;
     z-index: 999;
+    transition: none !important;
 }
 .changelog {
     background-color: var(--background-color);
@@ -505,21 +506,37 @@ body {
 }
 .changelog-header {
     display: flex;
-    justify-content: end;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 10px;
+    h2 {
+        font-size: 22px;
+    }
+    i {
+        font-size: 24px;
+    }
 }
 .changelog-content {
     max-height: 300px;
-    h2 {
-        margin-bottom: 24px;
+    h3 {
+        margin-bottom: 4px;
     }
     ul {
         line-height: 1.5;
         padding: 0 24px;
+    }
+    p {
+        color: var(--primary-color);
+        font-weight: 600;
+        font-size: 18px;
+        margin-top: 16px;
     }
 }
 .changelog-item {
     margin-bottom: 10px;
 }
 
+.no-scroll {
+    overflow: hidden;
+}
 /* ----------------------- Changelog End -----------------------*/

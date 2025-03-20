@@ -9,36 +9,35 @@
     <link rel="stylesheet" href="index.responsive.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="icon" type="image/x-icon" href="img/favicon.png" />
-    <style>
-
-    </style>
 </head>
-
 <body>
-    <!-- Change logs Interface-->
+    <!-- Change logs Interface -->
     <section id="changelog-container">
         <div class="changelog">
             <div class="changelog-header">
-                
+                <h2>Changelog v<span id="latestVersion"></span></h2>
                 <button id="close-changelog" class="btn primary secondary-sm" onclick="closeChangelog()"><i class="fa-solid fa-xmark ico-white"></i></button>
             </div>
             <div class="changelog-content">
                 <div class="changelog-item">
-                    <h2>Change Logs v1.1.0</h2>
                     <h3>Added</h3>
                     <ul>
                         <li>เพิ่มรายละเอียดที่มาของ Certificate</li>
-                        <li>เพิ่ม UI Changelogs เพื่อระบุรายละเอียดการอัพเดต</li>
+                        <li>เพิ่ม UI Changelog เพื่อระบุรายละเอียดการอัพเดต</li>
+                        <li>เพิ่มการป้องกันการ Scroll ถ้า UI Changelog ยังไม่ถูกปิด</li>
                     </ul>
+                    <p>Update latest: 20/03/2025</p>
                 </div>
             </div>
         </div>
     </section>
+    <!-- Background Animation -->
     <div class="blob-outer-container">
         <div class="blob-inner-container">
             <div class="blob"></div>
         </div>
     </div>
+    <!-- Navbar -->
     <header>
         <nav class="navbar">
             <h1 class="sitename">Castorice</h1>
@@ -52,6 +51,7 @@
             </div>
         </nav>
     </header>
+    <!-- Content Sections -->
     <main class="home-page">
         <section class="content">
             <div class="title">Welcome to
