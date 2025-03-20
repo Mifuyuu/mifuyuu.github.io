@@ -9,9 +9,31 @@
     <link rel="stylesheet" href="index.responsive.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="icon" type="image/x-icon" href="img/favicon.png" />
+    <style>
+
+    </style>
 </head>
 
 <body>
+    <!-- Change logs Interface-->
+    <section id="changelog-container">
+        <div class="changelog">
+            <div class="changelog-header">
+                
+                <button id="close-changelog" class="btn primary secondary-sm" onclick="closeChangelog()"><i class="fa-solid fa-xmark ico-white"></i></button>
+            </div>
+            <div class="changelog-content">
+                <div class="changelog-item">
+                    <h2>Change Logs v1.1.0</h2>
+                    <h3>Added</h3>
+                    <ul>
+                        <li>เพิ่มรายละเอียดที่มาของ Certificate</li>
+                        <li>เพิ่ม UI Changelogs เพื่อระบุรายละเอียดการอัพเดต</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
     <div class="blob-outer-container">
         <div class="blob-inner-container">
             <div class="blob"></div>
@@ -21,10 +43,8 @@
         <nav class="navbar">
             <h1 class="sitename">Castorice</h1>
             <div class="nav-btn">
-                <!-- <a href="#">คำแนะนำ</a> -->
                 <button onclick="window.open('https://github.com/Mifuyuu', '_blank');" class="btn primary"><span id="github_links">GitHub</span>
                     <i class="fa-brands fa-github ico-white" style="font-size: 24px;"></i>
-                    <!-- <i class="fa-solid fa-right-to-bracket"></i> -->
                 </button>
                 <div class="theme-changer">
                     <i id="theme-icon" class="fa-solid fa-moon"></i>
