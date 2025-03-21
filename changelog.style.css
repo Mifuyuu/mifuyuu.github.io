@@ -65,7 +65,10 @@
     }
 }
 .changelog-item {
-    margin-bottom: 10px;
+    max-height: 200px;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) var(--background-color);
 }
 
 .no-scroll {

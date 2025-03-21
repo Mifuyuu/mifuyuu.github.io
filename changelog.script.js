@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const changelog = document.getElementById("changelog-container");
     const closeChangelog = document.getElementById("close-changelog");
 
-    const currentVersion = "1.1.4";
+    const currentVersion = "1.1.5";
 
     const lastSeenVersion = localStorage.getItem("lastSeenVersion");
 
