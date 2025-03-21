@@ -1,4 +1,7 @@
 @media screen and (max-width: 1200px) {
+    .top-section {
+        margin-top: 15%;
+    }
     .content .title {
         font-size: 48px;
     }
@@ -25,8 +28,7 @@
         animation: none;
     }
 
-    .home-page {
-        width: 100%;
+    .top-section {
         padding: 16px;
         margin-top: 15%;
     }
@@ -67,8 +69,8 @@
 
 @media screen and (max-width: 480px) {
 
-    .home-page {
-        margin-top: 20%;
+    .top-section {
+        margin-top: 35%;
     }
     
     .nav-btn .btn{
