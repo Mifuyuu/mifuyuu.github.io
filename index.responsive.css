@@ -1,5 +1,5 @@
 @media screen and (max-width: 1200px) {
-    .top-section {
+    .home-page {
         margin-top: 15%;
     }
     .content .title {
@@ -28,7 +28,7 @@
         animation: none;
     }
 
-    .top-section {
+    .home-page {
         padding: 16px;
         margin-top: 15%;
     }
@@ -69,7 +69,7 @@
 
 @media screen and (max-width: 480px) {
 
-    .top-section {
+    .home-page {
         margin-top: 20%;
     }
     
