@@ -1,106 +1,471 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tsuzaki Dev</title>
-    <link rel="stylesheet" href="castorice.min.css">
-    <link rel="stylesheet" href="index.responsive.css">
+    <title>Seksun — Web Developer</title>
+    <meta name="description" content="เสกสรรญ หลำวรรณะ — web developer & designer">
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sarabun:wght@400;500;600;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="icon" type="image/x-icon" href="img/favicon.png" />
-    <link rel="stylesheet" href="changelog.style.css">
+    <script>
+        // set theme and language before paint; keeps the old "dark-theme"/"light-theme" values
+        const saved = localStorage.getItem("theme");
+        if (saved === "dark-theme" || (!saved && matchMedia("(prefers-color-scheme: dark)").matches)) {
+            document.documentElement.classList.add("dark");
+        }
+        document.documentElement.lang = localStorage.getItem("lang") === "en" ? "en" : "th";
+    </script>
+    <!-- ponytail: Tailwind browser build compiles in the page; switch to the CLI build if load time matters -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+        @custom-variant dark (&:where(.dark, .dark *));
+        @theme {
+            --font-sans: "Plus Jakarta Sans", "Sarabun", sans-serif;
+            --color-paper: #faf8fc;
+            --color-ink: #231a2e;
+            --color-muted: #6b5f7a;
+            --color-line: #e7e0ef;
+            --color-violet: #8e4ec6;
+            --color-lilac: #b170db;
+            --color-night: #121016;
+            --color-night-2: #1b1821;
+        }
+        @layer base {
+            html { scroll-behavior: smooth; @apply scroll-pt-16 lg:scroll-pt-8; }
+            /* every text comes in a th/en pair; show only the current language */
+            html[lang="th"] [lang="en"], html[lang="en"] [lang="th"] { display: none !important; }
+            body { @apply bg-paper text-ink font-sans antialiased dark:bg-night dark:text-[#ede6f5]; }
+            a, button { @apply rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lilac; }
+        }
+        @layer components {
+            .muted { @apply text-muted dark:text-[#a99bbb]; }
+            .heading { @apply mb-3 flex items-center gap-3; }
+            .heading svg { @apply size-4 shrink-0 text-muted dark:text-[#a99bbb]; }
+            .heading h2 { @apply text-lg font-semibold tracking-tight; }
+            .heading::after { content: ""; @apply h-px flex-1 bg-line; }
+            .dark .heading::after { @apply bg-white/6; } /* dark: variant can't attach to ::after */
+            .card { @apply overflow-hidden rounded-xl bg-white/80 shadow-md ring-1 ring-ink/5 backdrop-blur dark:bg-night-2/80 dark:ring-white/10; }
+            .tag { @apply inline-flex h-5 items-center rounded-full border border-violet-200 bg-violet-50 px-2 text-xs font-medium text-violet-700 dark:border-violet-800 dark:bg-violet-950/40 dark:text-violet-300; }
+            .skill { @apply inline-flex h-8 items-center gap-2 rounded-full border border-line bg-white/80 px-3 text-sm font-medium dark:border-white/10 dark:bg-night-2/80; }
+            .skill img { @apply h-4 w-auto; }
+            .chip { @apply inline-flex h-8 items-center gap-2 rounded-md px-2 text-xs text-muted dark:text-[#a99bbb]; }
+            a.chip { @apply hover:bg-ink/5 hover:text-ink dark:hover:bg-white/5 dark:hover:text-white; }
+            .side-link { @apply block w-fit py-1.5 text-muted underline-offset-[6px] hover:text-ink dark:text-[#a99bbb] dark:hover:text-white; }
+            .side-link[aria-current="true"] { @apply font-medium text-violet underline decoration-violet decoration-2 dark:text-lilac dark:decoration-lilac; }
+            .seg { @apply flex overflow-hidden rounded-md border border-line text-xs dark:border-white/10; }
+            .seg button { @apply rounded-none px-2 py-1 text-muted hover:text-ink dark:text-[#a99bbb] dark:hover:text-white; }
+            .seg button[aria-pressed="true"] { @apply bg-ink text-white dark:bg-white dark:text-night; }
+            .lv0, .lv1, .lv2, .lv3, .lv4 { @apply block size-[11px] rounded-[3px]; }
+            #gh-grid span { @apply size-auto aspect-square; }
+            .lv0 { @apply bg-ink/8 dark:bg-white/8; }
+            .lv1 { @apply bg-violet-200 dark:bg-violet-900; }
+            .lv2 { @apply bg-violet-300 dark:bg-violet-700; }
+            .lv3 { @apply bg-violet-500 dark:bg-violet-500; }
+            .lv4 { @apply bg-violet-700 dark:bg-violet-300; }
+            .btn { @apply inline-flex h-8 items-center gap-1.5 rounded-md border border-line px-3 text-xs font-medium hover:bg-ink/5 dark:border-white/10 dark:hover:bg-white/5; }
+        }
+        @media print {
+            @page { size: A4; margin: 12mm; }
+            html { font-size: 11px; }
+            body { background: #fff; }
+            * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            main { padding: 0 !important; max-width: none !important; }
+            .card { box-shadow: none; backdrop-filter: none; background: #fff; break-inside: avoid; }
+            .heading { break-after: avoid; }
+        }
+    </style>
 </head>
 <body>
-    <!-- Change logs Interface -->
-    <section id="changelog-container">
-        <div class="changelog">
-            <div class="changelog-header">
-                <h2>Changelog v<span id="latestVersion"></span></h2>
-                <button id="close-changelog" class="btn primary secondary-sm" onclick="closeChangelog()"><i class="fa-solid fa-xmark ico-white"></i></button>
-            </div>
-            <div class="changelog-content">
-                <div class="changelog-item">
-                    <h3>1.1.5</h3>
-                    <ul>
-                        <li>เพิ่มการ Scroll ให้กับข้อความใน changelog เนื่องจากมีความยาวมากเกินไป</li>
-                    </ul>
-                    <h3>1.1.4</h3>
-                    <ul>
-                        <li>แยกส่วน style และ Js ของ changelog ออกจากไฟล์หลัก</li>
-                    </ul>
-                    <h3>1.1.3</h3>
-                    <ul>
-                        <li>แก้ไขขนาดหน้า index เป็น 100vh</li>
-                        <li>แก้ไข Error ของ Javascript</li>
-                    </ul>
-                    <h3>1.1.2</h3>
-                    <ul>
-                        <li>เพิ่มรายละเอียดที่มาของ Certificate</li>
-                        <li>เพิ่ม UI Changelog เพื่อระบุรายละเอียดการอัพเดต</li>
-                        <li>เพิ่มการป้องกันการ Scroll ถ้า UI Changelog ยังไม่ถูกปิด</li>
-                    </ul>
-                </div>
-                <p>Update latest: 21/03/2025</p>
-            </div>
-        </div>
-    </section>
-    <!-- Background Animation -->
-    <div class="blob-outer-container">
-        <div class="blob-inner-container">
-            <div class="blob"></div>
-        </div>
+    <!-- background blobs -->
+    <div class="print:hidden pointer-events-none fixed inset-0 -z-10 overflow-hidden" aria-hidden="true">
+        <div class="absolute -right-[15%] -top-[20%] size-[40rem] rounded-full bg-violet-200/40 blur-[120px] dark:bg-violet-500/12"></div>
+        <div class="absolute -left-[10%] top-[35%] size-[34rem] rounded-full bg-fuchsia-200/30 blur-[120px] dark:bg-fuchsia-500/10"></div>
+        <div class="absolute bottom-[5%] right-[20%] size-[30rem] rounded-full bg-sky-200/25 blur-[100px] dark:bg-sky-500/8"></div>
     </div>
-    <!-- Navbar -->
-    <header>
-        <nav class="navbar">
-            <h1 class="sitename">Castorice</h1>
-            <div class="nav-btn">
-                <button onclick="window.open('https://github.com/Mifuyuu', '_blank');" class="btn primary"><span id="github_links">GitHub</span>
-                    <i class="fa-brands fa-github ico-white" style="font-size: 24px;"></i>
-                </button>
-                <div class="theme-changer">
-                    <i id="theme-icon" class="fa-solid fa-moon"></i>
-                </div>
-            </div>
-        </nav>
+
+    <!-- Mobile top bar -->
+    <header class="print:hidden sticky top-0 z-30 flex h-12 items-center gap-3 border-b border-line bg-paper/80 px-4 backdrop-blur-md lg:hidden dark:border-white/10 dark:bg-night/80">
+        <button id="menu-open" type="button" class="p-1.5 hover:text-violet" aria-label="Open menu" aria-controls="sidebar" aria-expanded="false">
+            <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+        </button>
+        <a href="#top" class="font-semibold">Seksun</a>
     </header>
-    <!-- Content Sections -->
-    <main class="home-page">
-        <section class="content">
-            <div class="title">Welcome to
-                <span class="highlight">Seksun</span>'s Website
-            </div>
-                <p class="subtitle">ยินดีต้อนรับเข้าสู่เว็บไซต์ของฉัน คลิกปุ่มด้านล่างเพื่อเข้าสู่หน้าหลัก</p>
-                <button onclick="location.href='home.html';" class="btn primary icon-animation">เข้าสู่หน้าหลัก
-                    <i class="fa-solid fa-arrow-right ico-white"></i>
+
+    <!-- Sidebar -->
+    <div id="backdrop" class="print:hidden fixed inset-0 z-40 hidden bg-ink/30 backdrop-blur-sm lg:hidden"></div>
+    <div class="mx-auto max-w-6xl lg:flex lg:gap-12 lg:px-8">
+    <aside id="sidebar" class="print:hidden fixed inset-y-0 left-0 z-50 flex w-64 -translate-x-full flex-col border-r border-line bg-paper/95 backdrop-blur-md transition-transform dark:border-white/10 dark:bg-night/95 [&.open]:translate-x-0 lg:sticky lg:inset-auto lg:top-0 lg:z-auto lg:h-screen lg:w-52 lg:shrink-0 lg:translate-x-0 lg:border-0 lg:bg-transparent lg:backdrop-blur-none dark:lg:bg-transparent">
+        <div class="px-6 pb-4 pt-6 lg:px-0 lg:pt-12">
+            <div class="flex items-center justify-between">
+                <a href="#top" class="leading-tight">
+                    <span class="block font-bold">Seksun</span>
+                    <span class="muted block text-xs"><span lang="th">นักพัฒนาและนักออกแบบเว็บไซต์</span><span lang="en">Web developer &amp; designer</span></span>
+                </a>
+                <button id="menu-close" type="button" class="p-1.5 hover:text-violet lg:hidden" aria-label="Close menu">
+                    <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/></svg>
                 </button>
-                <div class="card-container">
-                    <div class="card">
-                        <div class="icon-bg">
-                            <i class="fa-solid fa-user fa-2x"></i>
-                        </div>
-                        <h3>เกี่ยวกับฉัน</h3>
-                        <p>ฉันเป็นนักพัฒนาเว็บไซต์ และนักออกแบบเว็บไซต์ฉันสร้างเว็บไซต์นี้เพื่อให้คุณทราบข้อมูลของฉัน</p>
-                    </div>
-                    <div class="card">
-                        <div class="icon-bg">
-                            <i class="fa-solid fa-folder-open fa-2x"></i>
-                        </div>
-                        <h3>ผลงานของฉัน</h3>
-                        <p>หน้าเว็บไซต์จะแสดงผลงานต่างๆ ของฉันไม่ว่าจะเป็นงานเกี่ยวกับการเขียนเว็บไซต์ การออกแบบ</p>
-                    </div>
-                    <div class="card">
-                        <div class="icon-bg">
-                            <i class="fa-solid fa-code fa-2x"></i>
-                        </div>
-                        <h3>ความสามารถของฉัน</h3>
-                        <p>ความสามารถต่างๆ ของฉัน ขอขอบคุณล่วงหน้าสำหรับการติดตามฉันนะ!</p>
-                    </div>
+            </div>
+        </div>
+        <nav class="flex-1 overflow-y-auto px-6 py-2 lg:px-0" aria-label="Contents">
+            <p class="mb-2 text-xs font-semibold"><span lang="th">เนื้อหา</span><span lang="en">On this page</span></p>
+            <ul class="text-sm">
+                <li><a href="#top" class="side-link"><span lang="th">โปรไฟล์</span><span lang="en">Profile</span></a></li>
+                <li><a href="#education" class="side-link"><span lang="th">การศึกษา</span><span lang="en">Education</span></a></li>
+                <li><a href="#skills" class="side-link"><span lang="th">ความสามารถ</span><span lang="en">Technical Skills</span></a></li>
+                <li><a href="#projects" class="side-link"><span lang="th">ผลงานและ GitHub</span><span lang="en">Projects &amp; GitHub</span></a></li>
+                <li><a href="#certificates" class="side-link"><span lang="th">เกียรติบัตร</span><span lang="en">Certificates</span></a></li>
+            </ul>
+        </nav>
+        <!-- Export: opens the print dialog ("Save as PDF"); see @media print -->
+        <div class="px-6 pb-3 lg:px-0">
+            <button id="export-pdf" type="button" class="btn w-full justify-center">
+                <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+                <span lang="th">ดาวน์โหลด Resume (PDF)</span><span lang="en">Download resume (PDF)</span>
+            </button>
+        </div>
+        <!-- Theme + language controls -->
+        <div class="flex items-center justify-between gap-2 border-t border-line px-6 py-4 dark:border-white/10 lg:border-0 lg:px-0 lg:pb-8">
+            <div class="seg" role="group" aria-label="Language">
+                <button type="button" data-set-lang="th">TH</button>
+                <button type="button" data-set-lang="en">EN</button>
+            </div>
+            <button type="button" class="js-theme p-1.5 text-muted hover:text-violet dark:text-[#a99bbb]" aria-label="Toggle dark mode">
+                <!-- Heroicons outline: moon / sun -->
+                <svg class="size-5 dark:hidden" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"/></svg>
+                <svg class="hidden size-5 dark:block" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/></svg>
+            </button>
+        </div>
+    </aside>
+
+    <div class="min-w-0 flex-1">
+    <main class="mx-auto max-w-4xl space-y-8 px-4 py-6 sm:space-y-10 sm:px-6 sm:py-8 lg:mx-0 lg:px-0 lg:py-12">
+        <!-- Profile -->
+        <section id="top" class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+            <div class="flex gap-4">
+                <div class="size-20 shrink-0 overflow-hidden rounded-lg ring-1 ring-line sm:size-24 dark:ring-white/10">
+                    <!-- the photo is a wide shot; zoom in on the face -->
+                    <img src="img/profile_pic.png" alt="Seksun" class="size-full origin-[49%_30%] scale-[1.8] object-cover">
                 </div>
+                <div class="min-w-0">
+                    <h1 class="text-2xl font-extrabold leading-snug tracking-tight sm:text-3xl sm:leading-snug"><span lang="th">เสกสรรญ หลำวรรณะ <span class="muted font-semibold">(เคน)</span></span><span lang="en">Seksun Hlamwanna <span class="muted font-semibold">(Ken)</span></span></h1>
+                    <p class="muted mt-1 text-sm"><span lang="th">นักพัฒนาและนักออกแบบเว็บไซต์</span><span lang="en">Web developer &amp; designer</span></p>
+                    <p class="mt-1.5 text-sm font-semibold"><span lang="th">มหาวิทยาลัยราชภัฏนครปฐม <span class="muted font-normal">(กำลังศึกษา)</span></span><span lang="en">Nakhon Pathom Rajabhat University <span class="muted font-normal">(current student)</span></span></p>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 gap-2 sm:flex sm:flex-col sm:items-end">
+                <a href="mailto:ken.seksun@hotmail.com" class="chip min-w-0">
+                    <svg class="size-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>
+                    <span class="truncate">ken.seksun@hotmail.com</span>
+                </a>
+                <a href="https://github.com/Mifuyuu" target="_blank" rel="noopener" class="chip"><i class="fa-brands fa-github w-3.5"></i>github.com/Mifuyuu</a>
+                <a href="https://www.facebook.com/kz.kenkung" target="_blank" rel="noopener" class="chip"><i class="fa-brands fa-facebook w-3.5"></i>KZ KenKung</a>
+                <a href="https://discord.com/users/427142104494637086" target="_blank" rel="noopener" class="chip"><i class="fa-brands fa-discord w-3.5"></i>_tsuzaki</a>
+            </div>
+        </section>
+
+        <!-- About -->
+        <section id="about" data-nav="top"><!-- shares the Profile menu link -->
+            <div class="heading">
+                <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>
+                <h2><span lang="th">เกี่ยวกับฉัน</span><span lang="en">About Me</span></h2>
+            </div>
+            <div class="card space-y-3 p-5 text-sm leading-relaxed sm:p-6">
+                <p class="muted"><span lang="th">นักศึกษาสาขาเทคโนโลยีสารสนเทศ มหาวิทยาลัยราชภัฏนครปฐม สนใจด้านการเขียนโปรแกรม การพัฒนาซอฟต์แวร์ และการออกแบบ UI มีพื้นฐานการเขียนโปรแกรมที่ดี เขียน Java, HTML, CSS และ JavaScript ได้ ใช้ Figma ออกแบบหน้าจอก่อนลงมือเขียนจริง และพร้อมเรียนรู้ พัฒนาตัวเอง และหาประสบการณ์จากการทำงานจริง</span><span lang="en">IT student at Nakhon Pathom Rajabhat University with a strong interest in programming, software development and UI design. I have a solid foundation in Java, HTML, CSS and JavaScript, design screens in Figma before building them, and I'm eager to learn, improve and gain practical experience.</span></p>
+                <p class="muted"><span lang="th">นอกจากงานเว็บ ยังทำ mod Minecraft ด้วย Java และรับสร้างแผนที่ Minecraft ตามสั่ง ตั้งใจเรียนรู้และเติบโตทั้งในฐานะนักพัฒนาและนักออกแบบ</span><span lang="en">Outside web work, I build Minecraft mods in Java and take commissions for custom Minecraft maps. I'm keen to keep learning and growing as both a developer and a designer.</span></p>
+                <div class="flex flex-wrap gap-2 pt-1">
+                    <span class="tag">Web development</span>
+                    <span class="tag">UI design</span>
+                    <span class="tag">Minecraft modding</span>
+                    <span class="tag">Minecraft Builder</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education -->
+        <section id="education">
+            <div class="heading">
+                <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5"/></svg>
+                <h2><span lang="th">การศึกษา</span><span lang="en">Education</span></h2>
+            </div>
+            <div class="card divide-y divide-line text-sm dark:divide-white/10">
+                <div class="flex flex-wrap items-start justify-between gap-2 p-5 sm:px-6">
+                    <div>
+                        <p class="font-semibold"><span lang="th">มหาวิทยาลัยราชภัฏนครปฐม</span><span lang="en">Nakhon Pathom Rajabhat University</span></p>
+                        <p class="muted"><span lang="th">ระดับอุดมศึกษา สาขาเทคโนโลยีสารสนเทศ</span><span lang="en">Undergraduate, Information Technology</span></p>
+                        <p class="mt-1"><span lang="th">GPAX ปัจจุบัน</span><span lang="en">Current GPAX</span> <span class="font-semibold text-violet dark:text-lilac">3.87</span></p>
+                    </div>
+                    <span class="tag"><span lang="th">กำลังศึกษา</span><span lang="en">Current</span></span>
+                </div>
+                <div class="p-5 sm:px-6">
+                    <p class="font-semibold"><span lang="th">โรงเรียนคงทองวิทยา</span><span lang="en">Kongthong Wittaya School</span></p>
+                    <p class="muted"><span lang="th">ระดับมัธยมศึกษา</span><span lang="en">Secondary school</span></p>
+                </div>
+                <div class="p-5 sm:px-6">
+                    <p class="font-semibold"><span lang="th">โรงเรียนวัดสามง่าม (คงทองอนุสรณ์)</span><span lang="en">Wat Sam Ngam School (Kongthong Anusorn)</span></p>
+                    <p class="muted"><span lang="th">ระดับประถมศึกษา</span><span lang="en">Primary school</span></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills (tooltips switch language via data-title-*) -->
+        <section id="skills">
+            <div class="heading">
+                <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5"/></svg>
+                <h2><span lang="th">ความสามารถ</span><span lang="en">Technical Skills</span></h2>
+            </div>
+            <ul class="flex flex-wrap gap-2">
+                <li class="skill" data-title-th="เขียนได้ตั้งแต่ระดับพื้นฐานถึงระดับกลาง และแก้ปัญหาได้" data-title-en="Beginner to intermediate; can solve problems on my own"><img src="https://thesvg.org/icons/java/default.svg" alt="">Java</li>
+                <li class="skill" data-title-th="เข้าใจการวาง layout และส่วนประกอบต่าง ๆ เขียนได้ในระดับกลาง" data-title-en="Understand layout and page structure; intermediate level"><img src="https://thesvg.org/icons/html5/default.svg" alt="">HTML5</li>
+                <li class="skill" data-title-th="เข้าใจ ตั้งค่า ปรับแต่ง และแก้ปัญหาได้" data-title-en="Can set up, customise and debug styles"><img src="https://thesvg.org/icons/css3/default.svg" alt="">CSS</li>
+                <li class="skill" data-title-th="เข้าใจในระดับหนึ่ง แก้ปัญหาบางอย่างได้" data-title-en="Working knowledge; can fix some problems"><img src="https://thesvg.org/icons/javascript/default.svg" alt="">JavaScript</li>
+                <li class="skill"><img src="https://thesvg.org/icons/tailwindcss/default.svg" alt="">Tailwind CSS</li>
+                <li class="skill"><img src="https://thesvg.org/icons/bootstrap/default.svg" alt="">Bootstrap 5</li>
+                <li class="skill" data-title-th="ออกแบบและสร้างงานได้จริง แก้ปัญหาต่าง ๆ ได้" data-title-en="Can design and build real screens"><img src="https://thesvg.org/icons/figma/default.svg" alt="">Figma</li>
+                <li class="skill"><img src="https://thesvg.org/icons/docker/default.svg" alt="">Docker</li>
+                <li class="skill"><img src="https://thesvg.org/icons/github/light.svg" alt="" class="dark:hidden"><img src="https://thesvg.org/icons/github/dark.svg" alt="" class="hidden dark:block">GitHub</li>
+                <li class="skill" data-title-th="เข้าใจภาษาในระดับหนึ่ง เขียนและปรับแต่งได้บางส่วน" data-title-en="Some understanding; can write and tweak parts"><img src="https://thesvg.org/icons/php/light.svg" alt="" class="dark:hidden"><img src="https://thesvg.org/icons/php/dark.svg" alt="" class="hidden dark:block">PHP</li>
+                <li class="skill"><img src="https://thesvg.org/icons/mysql/light.svg" alt="" class="dark:hidden"><img src="https://thesvg.org/icons/mysql/dark.svg" alt="" class="hidden dark:block">MySQL</li>
+                <li class="skill" data-title-th="อ่านและแก้ไขได้บางส่วน มีแผนศึกษาเพิ่มเติม" data-title-en="Can read and edit some code; planning to learn more"><img src="https://thesvg.org/icons/python/default.svg" alt="">Python</li>
+                <li class="skill"><img src="https://thesvg.org/icons/codex/light.svg" alt="" class="dark:hidden"><img src="https://thesvg.org/icons/codex/dark.svg" alt="" class="hidden dark:block">Codex</li>
+                <li class="skill"><img src="https://thesvg.org/icons/claude-code/default.svg" alt="">Claude Code</li>
+                <li class="skill"><img src="https://thesvg.org/icons/google-antigravity/default.svg" alt="">Antigravity</li>
+                <li class="skill"><img src="https://thesvg.org/icons/gemini/default.svg" alt="">Gemini</li>
+                <li class="skill"><img src="https://thesvg.org/icons/github-copilot/light.svg" alt="" class="dark:hidden"><img src="https://thesvg.org/icons/github-copilot/dark.svg" alt="" class="hidden dark:block">GitHub Copilot</li>
+            </ul>
+        </section>
+
+        <!-- Projects -->
+        <section id="projects">
+            <div class="heading">
+                <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z"/></svg>
+                <h2><span lang="th">ผลงานและ GitHub</span><span lang="en">Projects &amp; GitHub</span></h2>
+            </div>
+            <div class="grid gap-3 sm:grid-cols-2">
+                <article class="card flex flex-col">
+                    <img src="img/java-pjx.png" alt="DisableFrontView mod" class="print:hidden aspect-video w-full bg-violet-50 object-contain p-4 dark:bg-violet-950/30">
+                    <div class="flex flex-1 flex-col gap-2 p-5">
+                        <h3 class="font-semibold">DisableFrontView</h3>
+                        <p class="muted text-sm leading-relaxed"><span lang="th">Mod สำหรับ Minecraft 1.8.9 ปิดมุมกล้องด้านหน้าเมื่อกด F5 ให้สลับได้แค่มุมบุคคลที่หนึ่งกับมุมด้านหลัง</span><span lang="en">A Minecraft 1.8.9 mod that disables the front-facing camera on F5, so you only switch between first person and the rear view.</span></p>
+                        <div class="flex flex-wrap gap-1.5"><span class="tag">Java</span><span class="tag">Minecraft 1.8.9</span></div>
+                        <div class="mt-auto flex flex-wrap gap-2 pt-2">
+                            <a href="https://modrinth.com/mod/disablefrontview" target="_blank" rel="noopener" class="btn"><i class="fa-solid fa-cube"></i>Modrinth</a>
+                            <a href="https://github.com/Mifuyuu/DisableFrontView-1.8.9" target="_blank" rel="noopener" class="btn"><i class="fa-brands fa-github"></i>Source code</a>
+                        </div>
+                    </div>
+                </article>
+                <article class="card flex flex-col">
+                    <img src="img/mapbuilding-pjx.jpg" alt="Minecraft map" class="print:hidden aspect-video w-full object-cover">
+                    <div class="flex flex-1 flex-col gap-2 p-5">
+                        <h3 class="font-semibold">Minecraft Map Builder</h3>
+                        <p class="muted text-sm leading-relaxed"><span lang="th">ออกแบบและสร้างแผนที่ Minecraft ตามความต้องการของลูกค้า ทั้งการปรับภูมิทัศน์ (terraforming) สิ่งก่อสร้าง และรายละเอียดต่าง ๆ</span><span lang="en">Designs and builds Minecraft maps to client requirements, including terraforming, structures and detailing.</span></p>
+                        <div class="flex flex-wrap gap-1.5"><span class="tag">Map design</span><span class="tag">Commission</span></div>
+                        <div class="mt-auto flex flex-wrap gap-2 pt-2">
+                            <a href="https://www.facebook.com/KenKungShop" target="_blank" rel="noopener" class="btn"><i class="fa-brands fa-facebook"></i><span lang="th">ดูผลงานเพิ่มเติม</span><span lang="en">See more work</span></a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            <!-- More repos from github.com/Mifuyuu -->
+            <div class="mt-3 grid gap-3 sm:grid-cols-2">
+                <article class="card flex flex-col gap-2 p-5">
+                    <div class="flex items-baseline justify-between gap-2"><h3 class="font-semibold">ToDoTask</h3><span class="muted text-xs">2026</span></div>
+                    <p class="muted text-sm leading-relaxed"><span lang="th">แอปจัดการงานแบบเกม มี XP สะสม streak รายวัน ติดตามความคืบหน้า กรองงาน และเก็บข้อมูลไว้ในเบราว์เซอร์ด้วย LocalStorage</span><span lang="en">Gamified to-do app with XP rewards, daily streaks, progress tracking, task filters and LocalStorage persistence.</span></p>
+                    <div class="flex flex-wrap gap-1.5"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+                    <div class="mt-auto flex flex-wrap gap-2 pt-2">
+                        <a href="https://mifuyuu.github.io/ToDoTask/" target="_blank" rel="noopener" class="btn"><i class="fa-solid fa-arrow-up-right-from-square"></i><span lang="th">ลองใช้งาน</span><span lang="en">Live demo</span></a>
+                        <a href="https://github.com/Mifuyuu/ToDoTask" target="_blank" rel="noopener" class="btn"><i class="fa-brands fa-github"></i>Source code</a>
+                    </div>
+                </article>
+                <article class="card flex flex-col gap-2 p-5">
+                    <div class="flex items-baseline justify-between gap-2"><h3 class="font-semibold">LiteLearning</h3><span class="muted text-xs">2026</span></div>
+                    <p class="muted text-sm leading-relaxed"><span lang="th">ระบบห้องเรียนออนไลน์แบบมีเกม (gamification) แยกสิทธิ์ผู้ดูแล ผู้สอน และผู้เรียน สร้างห้องเรียน มอบหมายและให้คะแนนงาน พร้อมเหรียญตราและความสำเร็จ</span><span lang="en">Gamified online classroom with separate admin, teacher and student roles: create classrooms, assign and grade work, and earn badges and achievements.</span></p>
+                    <div class="flex flex-wrap gap-1.5"><span class="tag">Laravel</span><span class="tag">Livewire</span><span class="tag">PHP</span><span class="tag">Docker</span></div>
+                    <div class="mt-auto flex flex-wrap gap-2 pt-2">
+                        <a href="https://github.com/Mifuyuu/LiteLearning" target="_blank" rel="noopener" class="btn"><i class="fa-brands fa-github"></i>Source code</a>
+                    </div>
+                </article>
+                <article class="card flex flex-col gap-2 p-5">
+                    <div class="flex items-baseline justify-between gap-2"><h3 class="font-semibold">Chathai Quiz</h3><span class="muted text-xs">2026</span></div>
+                    <p class="muted text-sm leading-relaxed"><span lang="th">เกมตอบคำถามแบบปัดการ์ด (ปัดขวา = ใช่, ปัดซ้าย = ไม่ใช่) Host สร้างห้อง ผู้เล่นเข้าร่วมด้วยรหัส 6 หลัก แล้วดูผลบนตารางคะแนน</span><span lang="en">Swipe-card quiz game (right = yes, left = no). The host creates a room, players join with a 6-digit code, and results show on a scoreboard.</span></p>
+                    <div class="flex flex-wrap gap-1.5"><span class="tag">PHP (MVC)</span><span class="tag">JavaScript</span><span class="tag">Docker</span></div>
+                    <div class="mt-auto flex flex-wrap gap-2 pt-2">
+                        <a href="https://github.com/Mifuyuu/Chathai" target="_blank" rel="noopener" class="btn"><i class="fa-brands fa-github"></i>Source code</a>
+                    </div>
+                </article>
+                <article class="card flex flex-col gap-2 p-5">
+                    <div class="flex items-baseline justify-between gap-2"><h3 class="font-semibold">Fileora</h3><span class="muted text-xs">2025</span></div>
+                    <p class="muted text-sm leading-relaxed"><span lang="th">เว็บแอปฝากไฟล์ที่ไม่ต้องสมัครสมาชิก อัปโหลดแล้วแชร์ต่อด้วยลิงก์หรือ QR code และไฟล์จะหมดอายุอัตโนมัติ</span><span lang="en">File-sharing web app with no sign-up. Upload a file, share it by link or QR code, and it expires automatically.</span></p>
+                    <div class="flex flex-wrap gap-1.5"><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">MongoDB</span></div>
+                    <div class="mt-auto flex flex-wrap gap-2 pt-2">
+                        <a href="https://github.com/Mifuyuu/Fileora-App" target="_blank" rel="noopener" class="btn"><i class="fa-brands fa-github"></i>Source code</a>
+                    </div>
+                </article>
+                <article class="card flex flex-col gap-2 p-5">
+                    <div class="flex items-center justify-between gap-2"><div class="flex items-center gap-2"><h3 class="font-semibold">OnlineShop</h3><span class="tag border-sky-200 bg-sky-50 text-sky-700 dark:border-sky-800 dark:bg-sky-950/40 dark:text-sky-300">University</span></div><span class="muted text-xs">2025</span></div>
+                    <p class="muted text-sm leading-relaxed"><span lang="th">ร้านค้าออนไลน์ มีตะกร้าสินค้า ชำระเงิน และประวัติคำสั่งซื้อ พร้อมหลังบ้านสำหรับจัดการสินค้า หมวดหมู่ ผู้ใช้ และคำสั่งซื้อ</span><span lang="en">Online store with cart, checkout and order history, plus an admin panel for products, categories, users and orders.</span></p>
+                    <div class="flex flex-wrap gap-1.5"><span class="tag">PHP</span><span class="tag">MySQL</span></div>
+                    <div class="mt-auto flex flex-wrap gap-2 pt-2">
+                        <a href="https://github.com/Mifuyuu/OnlineShop" target="_blank" rel="noopener" class="btn"><i class="fa-brands fa-github"></i>Source code</a>
+                    </div>
+                </article>
+                <article class="card flex flex-col gap-2 p-5">
+                    <div class="flex items-baseline justify-between gap-2"><h3 class="font-semibold">GuessThepic</h3><span class="muted text-xs">2025</span></div>
+                    <p class="muted text-sm leading-relaxed"><span lang="th">เกมทายภาพ มีระบบสมาชิกและตารางอันดับผู้เล่น</span><span lang="en">Picture-guessing game with player accounts and a leaderboard.</span></p>
+                    <div class="flex flex-wrap gap-1.5"><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">MongoDB</span><span class="tag">Socket.IO</span></div>
+                    <div class="mt-auto flex flex-wrap gap-2 pt-2">
+                        <a href="https://github.com/Mifuyuu/GuessThepic" target="_blank" rel="noopener" class="btn"><i class="fa-brands fa-github"></i>Source code</a>
+                    </div>
+                </article>
+            </div>
+            <!-- GitHub activity -->
+            <div class="print:hidden card mt-3 p-5 sm:p-6">
+                <div class="mb-3 flex flex-wrap items-baseline justify-between gap-2 text-sm">
+                    <p id="gh-total" class="font-semibold"><span lang="th">กำลังโหลด…</span><span lang="en">Loading…</span></p>
+                    <a href="https://github.com/Mifuyuu" target="_blank" rel="noopener" class="muted text-xs hover:text-violet"><i class="fa-brands fa-github"></i> @Mifuyuu</a>
+                </div>
+                <div class="overflow-x-auto pb-1">
+                    <div id="gh-grid" class="grid min-w-[640px] auto-cols-fr grid-flow-col grid-rows-7 gap-[3px]"></div>
+                </div>
+                <div class="muted mt-3 flex items-center justify-end gap-1 text-xs">
+                    <span lang="th">น้อย</span><span lang="en">Less</span>
+                    <span class="lv0"></span><span class="lv1"></span><span class="lv2"></span><span class="lv3"></span><span class="lv4"></span>
+                    <span lang="th">มาก</span><span lang="en">More</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certificates -->
+        <section id="certificates" class="print:hidden">
+            <div class="heading">
+                <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 0 1-.982-3.172M9.497 14.25a7.454 7.454 0 0 0 .981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 0 0 7.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 0 0 2.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 0 1 2.916.52 6.003 6.003 0 0 1-5.395 4.972m0 0a6.726 6.726 0 0 1-2.749 1.35m0 0a6.772 6.772 0 0 1-3.044 0"/></svg>
+                <h2><span lang="th">เกียรติบัตร</span><span lang="en">Certificates</span></h2>
+            </div>
+            <div class="grid gap-3 sm:grid-cols-2">
+                <a href="img/cer-1.png" target="_blank" class="card block hover:ring-lilac">
+                    <img src="img/cer-1.png" alt="Moral Short Movie certificate" loading="lazy" class="aspect-[4/3] w-full object-cover">
+                    <div class="space-y-1 p-5">
+                        <p class="text-sm font-semibold"><span lang="th">อบรมเชิงปฏิบัติการผลิตหนังสั้นคุณธรรม “Moral Short Movie”</span><span lang="en">“Moral Short Movie” filmmaking workshop</span></p>
+                        <p class="muted text-sm leading-relaxed"><span lang="th">โรงเรียนคงทองวิทยา จ.นครปฐม ส่งเสริมความคิดสร้างสรรค์และการผลิตสื่อเชิงคุณธรรม</span><span lang="en">Kongthong Wittaya School, Nakhon Pathom. Encourages creativity and making media with moral themes.</span></p>
+                        <p class="muted text-xs"><span lang="th">23–25 ส.ค. 2562</span><span lang="en">23–25 Aug 2019</span></p>
+                    </div>
+                </a>
+                <a href="img/cer-2.png" target="_blank" class="card block hover:ring-lilac">
+                    <img src="img/cer-2.png" alt="Kob Junior THE GREEN certificate" loading="lazy" class="aspect-[4/3] w-full object-cover">
+                    <div class="space-y-1 p-5">
+                        <p class="text-sm font-semibold"><span lang="th">กบจูเนียร์ THE GREEN: Zero Waste เด็กยุคใหม่สร้างสังคมไทยไร้ขยะ</span><span lang="en">Kob Junior THE GREEN: Zero Waste for a waste-free Thailand</span></p>
+                        <p class="muted text-sm leading-relaxed"><span lang="th">มหาวิทยาลัยกรุงเทพ จ.ปทุมธานี อบรมผลิตสื่อสร้างสรรค์ด้านสิ่งแวดล้อม</span><span lang="en">Bangkok University, Pathum Thani. Workshop on creative media for the environment.</span></p>
+                        <p class="muted text-xs"><span lang="th">31 พ.ค. 2562</span><span lang="en">31 May 2019</span></p>
+                    </div>
+                </a>
+                <a href="img/cer-3.png" target="_blank" class="card block hover:ring-lilac">
+                    <img src="img/cer-3.png" alt="Certificate of Internet Kindness by Google" loading="lazy" class="aspect-[4/3] w-full object-cover">
+                    <div class="space-y-1 p-5">
+                        <p class="text-sm font-semibold">Certificate of Internet Kindness by Google</p>
+                        <p class="muted text-sm leading-relaxed"><span lang="th">ได้รับ Internet Awesome Status จากการแสดงความมีน้ำใจบนโลกออนไลน์และช่วยลด cyberbullying</span><span lang="en">Earned Internet Awesome status for showing kindness online and helping reduce cyberbullying.</span></p>
+                    </div>
+                </a>
+                <a href="img/cer-4.png" target="_blank" class="card block hover:ring-lilac">
+                    <img src="img/cer-4.png" alt="AI for Oceans certificate" loading="lazy" class="aspect-[4/3] w-full object-cover">
+                    <div class="space-y-1 p-5">
+                        <p class="text-sm font-semibold">AI for Oceans (Hour of Code) by Code.org</p>
+                        <p class="muted text-sm leading-relaxed"><span lang="th">ผ่านการอบรมแนวคิดพื้นฐานด้านวิทยาการคอมพิวเตอร์ สนับสนุนโดย Amazon</span><span lang="en">Completed an introduction to core computer science concepts, supported by Amazon.</span></p>
+                    </div>
+                </a>
+            </div>
         </section>
     </main>
-    <script src="script.min.js"></script>
-    <script src="changelog.script.js"></script>
+
+    <footer class="print:hidden border-t border-line dark:border-white/10">
+        <div class="muted mx-auto flex max-w-4xl items-center justify-between px-4 py-5 text-xs sm:px-6 lg:px-0">
+            <p>&copy; <span id="year"></span> Seksun</p>
+            <div class="flex items-center gap-1 text-base">
+                <a href="https://github.com/Mifuyuu" target="_blank" rel="noopener" class="p-1.5 hover:text-violet" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.facebook.com/kz.kenkung" target="_blank" rel="noopener" class="p-1.5 hover:text-violet" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://discord.com/users/427142104494637086" target="_blank" rel="noopener" class="p-1.5 hover:text-violet" aria-label="Discord: _tsuzaki"><i class="fa-brands fa-discord"></i></a>
+            </div>
+        </div>
+    </footer>
+    </div>
+    </div>
+
+    <script>
+        const root = document.documentElement;
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        document.querySelectorAll(".js-theme").forEach((btn) => btn.addEventListener("click", () => {
+            const dark = root.classList.toggle("dark");
+            localStorage.setItem("theme", dark ? "dark-theme" : "light-theme");
+        }));
+
+        const setLang = (lang) => {
+            root.lang = lang;
+            localStorage.setItem("lang", lang);
+            document.querySelectorAll("[data-set-lang]").forEach((b) => b.setAttribute("aria-pressed", b.dataset.setLang === lang));
+            document.querySelectorAll("[data-title-th]").forEach((el) => el.title = el.dataset["title" + (lang === "en" ? "En" : "Th")]);
+        };
+        document.querySelectorAll("[data-set-lang]").forEach((b) => b.addEventListener("click", () => setLang(b.dataset.setLang)));
+        setLang(root.lang);
+
+        // mobile sidebar drawer
+        const sidebar = document.getElementById("sidebar");
+        const backdrop = document.getElementById("backdrop");
+        const openBtn = document.getElementById("menu-open");
+        const setMenu = (open) => {
+            sidebar.classList.toggle("open", open);
+            backdrop.classList.toggle("hidden", !open);
+            openBtn.setAttribute("aria-expanded", open);
+        };
+        openBtn.addEventListener("click", () => setMenu(true));
+        document.getElementById("menu-close").addEventListener("click", () => setMenu(false));
+        backdrop.addEventListener("click", () => setMenu(false));
+        sidebar.querySelectorAll("a[href^='#']").forEach((a) => a.addEventListener("click", () => setMenu(false)));
+        addEventListener("keydown", (e) => e.key === "Escape" && setMenu(false));
+
+        // export resume: print in light theme with a resume file name, then restore
+        let wasDark = false;
+        const pageTitle = document.title;
+        addEventListener("beforeprint", () => {
+            wasDark = root.classList.contains("dark");
+            root.classList.remove("dark");
+            document.title = "Seksun Hlamwanna (Ken) - Frontend Developer";
+        });
+        addEventListener("afterprint", () => {
+            root.classList.toggle("dark", wasDark);
+            document.title = pageTitle;
+        });
+        document.getElementById("export-pdf").addEventListener("click", () => { setMenu(false); print(); });
+
+        // GitHub contribution grid (last 12 months)
+        const ghTotal = document.getElementById("gh-total");
+        fetch("https://github-contributions-api.jogruber.de/v4/Mifuyuu?y=last")
+            .then((r) => r.ok ? r.json() : Promise.reject())
+            .then(({ total, contributions }) => {
+                const n = total.lastYear;
+                ghTotal.innerHTML = `<span lang="th">${n} contributions ในปีที่ผ่านมา</span><span lang="en">${n} contributions in the last year</span>`;
+                // pad the first column so each row is a weekday (Sun at top)
+                const pad = new Date(contributions[0].date).getUTCDay();
+                const cells = Array.from({ length: pad }, () => '<span></span>');
+                for (const c of contributions) {
+                    cells.push(`<span class="lv${c.level}" title="${c.count} contributions · ${c.date}"></span>`);
+                }
+                document.getElementById("gh-grid").innerHTML = cells.join("");
+            })
+            .catch(() => {
+                ghTotal.innerHTML = '<span lang="th">โหลดข้อมูลไม่ได้</span><span lang="en">Couldn\'t load activity.</span> <a class="underline decoration-lilac underline-offset-4" href="https://github.com/Mifuyuu" target="_blank" rel="noopener"><span lang="th">ดูบน GitHub</span><span lang="en">View on GitHub</span></a>';
+            });
+
+        // underline the sidebar link of the section in view
+        const links = sidebar.querySelectorAll(".side-link");
+        const spy = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                links.forEach((a) => a.setAttribute("aria-current", a.hash === "#" + (entry.target.dataset.nav || entry.target.id)));
+            });
+        }, { rootMargin: "0px 0px -70% 0px" });
+        document.querySelectorAll("main section[id]").forEach((s) => spy.observe(s));
+    </script>
 </body>
 </html>
