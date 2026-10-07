@@ -445,15 +445,22 @@
                 ghTotal.innerHTML = '<span lang="th">โหลดข้อมูลไม่ได้</span><span lang="en">Couldn\'t load activity.</span> <a class="underline decoration-lilac underline-offset-4" href="https://github.com/Mifuyuu" target="_blank" rel="noopener"><span lang="th">ดูบน GitHub</span><span lang="en">View on GitHub</span></a>';
             });
 
-        // underline the sidebar link of the section in view
+        // underline the sidebar link of the section in view; a clicked link wins until the user scrolls
+        // (the last section is too short to reach the top, so position alone can't tell it from the one above)
         const links = sidebar.querySelectorAll(".side-link");
-        const spy = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (!entry.isIntersecting) return;
-                links.forEach((a) => a.setAttribute("aria-current", a.hash === "#" + (entry.target.dataset.nav || entry.target.id)));
-            });
-        }, { rootMargin: "0px 0px -70% 0px" });
-        document.querySelectorAll("main section[id]").forEach((s) => spy.observe(s));
+        const sections = [...document.querySelectorAll("main section[id]")];
+        let clicked = null;
+        const mark = (id) => links.forEach((a) => a.setAttribute("aria-current", a.hash === "#" + id));
+        const spy = () => {
+            if (clicked) return;
+            const atBottom = innerHeight + scrollY >= document.documentElement.scrollHeight - 2;
+            const s = atBottom ? sections.at(-1) : sections.filter((s) => s.getBoundingClientRect().top <= innerHeight * 0.3).at(-1) || sections[0];
+            mark(s.dataset.nav || s.id);
+        };
+        links.forEach((a) => a.addEventListener("click", () => mark(clicked = a.hash.slice(1))));
+        ["wheel", "touchstart", "keydown"].forEach((t) => addEventListener(t, () => (clicked = null), { passive: true }));
+        addEventListener("scroll", spy, { passive: true });
+        spy();
     </script>
 </body>
 </html>
